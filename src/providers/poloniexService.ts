@@ -15,7 +15,7 @@ export class PoloniexService{
     this.Url='https://poloniex.com/public?command=';
     this.apiKey = 'FEP2GU36-66H13OOV-3BNN10D1-SPVHZ755';
     this.secretKey = "f2577bcbe5e3570010bacaa8eb1d486dc7a1faf3418ed6db6678902ed3491368301298d3fdff7d86998e4cc96ccfaa289321044a02f463da0661d415f411cfe8";
-    this.backEndUrl = "http://192.241.247.142:3010";
+    this.backEndUrl = "http://localhost:3010"; //WebServer URL : 192.241.247.142
 
   }
   returnTicker(){
