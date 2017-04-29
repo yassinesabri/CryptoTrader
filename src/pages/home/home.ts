@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
     this.markets = ['BTC_BBR','BTC_BCN','BTC_BELA','BTC_BITS','BTC_BLK','BTC_BTCD','BTC_BTM','BTC_BTS','BTC_BURST','BTC_C2','BTC_CLAM','BTC_CURE','BTC_DASH'];
     this.currencies = ['1CR','ABY','BCN','BTC','FLDC','GRC','QORA','SDC','TOR','XAP','X13','XLB'];
     this.showTicker = false;
-    this.showTickerLabel = 'Show Ticker';
+    this.showTickerLabel = 'Show Tickers';
     this.showBalances = false;
     this.showBalancesLabel = "Show Balances";
   }
@@ -58,10 +58,10 @@ export class HomePage implements OnInit {
   }
   hideTicker(){
     this.showTicker = !this.showTicker;
-    if(this.showTickerLabel == 'Hide Ticker')
-      this.showTickerLabel = 'Show Ticker';
+    if(this.showTickerLabel == 'Hide Tickers')
+      this.showTickerLabel = 'Show Tickers';
     else
-      this.showTickerLabel = 'Hide Ticker';
+      this.showTickerLabel = 'Hide Tickers';
   }
   hideBalance(){
     this.showBalances = !this.showBalances;
