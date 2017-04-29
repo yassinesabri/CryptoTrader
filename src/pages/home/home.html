@@ -1,0 +1,54 @@
+<ion-header>
+ <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <button ion-button block [color]="showTicker ? 'danger' : 'primary'" (click)=hideTicker()>{{showTickerLabel}}</button>
+  <div *ngIf="ticker && showTicker">
+    <ion-card *ngFor="let market of markets">
+            <ion-card-header>
+              {{market}}
+            </ion-card-header>
+            <ion-card-content>
+            <strong>last : </strong>{{ticker[market].last}}<br/>
+            <strong>lowestAsk : </strong>{{ticker[market].lowestAsk}}<br/>
+            <strong>highestBid : </strong>{{ticker[market].highestBid}}<br/>
+            <strong>percentChange : </strong>{{ticker[market].percentChange}}<br/>
+            <strong>baseVolume : </strong>{{ticker[market].baseVolume}}<br/>
+            <strong>high24hr : </strong>{{ticker[market].high24hr}}<br/>
+            </ion-card-content>
+          </ion-card>
+  </div>
+  <button ion-button block [color]="showBalances ? 'danger' : 'primary'" (click)=hideBalance()> {{showBalancesLabel}}</button>
+  <div *ngIf="balances && showBalances">
+    <ion-card *ngFor="let currency of currencies">
+      <ion-card-header>
+        {{currency}}
+      </ion-card-header>
+      <ion-card-content>
+        <strong>Balance : </strong>{{balances[currency]}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+</ion-content>
