@@ -22,8 +22,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <button ion-button block [color]="showTicker ? 'danger' : 'primary'" (click)=hideTicker()>{{showTickerLabel}}</button>
-  <div *ngIf="ticker && showTicker">
+  <div *ngIf="ticker">
     <ion-card *ngFor="let market of markets">
             <ion-card-header>
               {{market}}
@@ -37,17 +36,6 @@
             <strong>high24hr : </strong>{{ticker[market].high24hr}}<br/>
             </ion-card-content>
           </ion-card>
-  </div>
-  <button ion-button block [color]="showBalances ? 'danger' : 'primary'" (click)=hideBalance()> {{showBalancesLabel}}</button>
-  <div *ngIf="balances && showBalances">
-    <ion-card *ngFor="let currency of currencies">
-      <ion-card-header>
-        {{currency}}
-      </ion-card-header>
-      <ion-card-content>
-        <strong>Balance : </strong>{{balances[currency]}}
-      </ion-card-content>
-    </ion-card>
   </div>
 
 
