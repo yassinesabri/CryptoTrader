@@ -5,9 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {LoginPage} from '../pages/login/login';
-import {HomePage} from '../pages/home/home';
-import {AboutPage} from '../pages/about/about';
-import {ContactPage} from '../pages/contact/contact';
+import {MarketPage} from '../pages/market/market';
+import {TradesPage} from '../pages/trades/trades';
+import {SettingsPage} from '../pages/settings/settings';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
 import {PoloniexService} from './../providers/poloniexService';
@@ -17,9 +17,9 @@ import { IonicStorageModule } from '@ionic/storage';
   declarations: [
     MyApp,
     LoginPage,
-    HomePage,
-    AboutPage,
-    ContactPage,
+    MarketPage,
+    TradesPage,
+    SettingsPage,
     TabsPage
   ],
   imports: [
@@ -32,9 +32,9 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp,
     LoginPage,
-    HomePage,
-    AboutPage,
-    ContactPage,
+    MarketPage,
+    TradesPage,
+    SettingsPage,
     TabsPage
   ],
   providers: [
