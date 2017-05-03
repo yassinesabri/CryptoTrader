@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
 import {PoloniexService} from './../providers/poloniexService';
 import {HttpModule} from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +25,8 @@ import {HttpModule} from '@angular/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

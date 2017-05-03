@@ -36,16 +36,17 @@
     </div>
     <ion-grid *ngIf="ticker">
       <ion-row>
-        <ion-col width-25>Coin</ion-col>
-        <ion-col width-35>Price</ion-col>
-        <ion-col width-20>Volume</ion-col>
-        <ion-col width-20>Change</ion-col>
+        <ion-col col-2>Coin</ion-col>
+        <ion-col col-4>Price</ion-col>
+        <ion-col col-3.5>Volume</ion-col>
+        <ion-col col-2.5>Change</ion-col>
       </ion-row>
+      
       <ion-row *ngFor="let currency of currencies">
-        <ion-col width-25 *ngIf="ticker[market_id+'_'+currency]">{{currency}}</ion-col>
-        <ion-col width-35 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].last}}</ion-col>
-        <ion-col width-20 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].baseVolume}}</ion-col>
-        <ion-col width-20 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].percentChange}}</ion-col>
+        <ion-col col-2 *ngIf="ticker[market_id+'_'+currency]">{{currency}}</ion-col>
+        <ion-col col-4 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].last}}</ion-col>
+        <ion-col col-3.5 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].baseVolume}}</ion-col>
+        <ion-col col-2.5 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].percentChange}}</ion-col>
       </ion-row>
     </ion-grid>
 
