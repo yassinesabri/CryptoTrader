@@ -1,11 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+ <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Trades</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+   </ion-refresher>
+    <ion-label> Your balance
+    </ion-label>
+    <div *ngIf="!balance">
+      No Connection Lost.Pull to Refresh
+    </div>
+    <ion-grid *ngIf="balance">
+      <ion-row>
+        <ion-col width-25>Coin</ion-col>
+        <ion-col width-35>Total Balance</ion-col>
+        <ion-col width-20>BTC Value</ion-col>
+        <ion-col width-20>Action</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let currency of currencies">
+        <ion-col width-25 >{{currency}}</ion-col>
+        <ion-col width-35 >{{balance[currency]}}</ion-col>
+        <ion-col width-20 >{{balance[currency]}}</ion-col>
+        <ion-col width-20 >Deposit/Withdraw</ion-col>
+      </ion-row>
+    </ion-grid>
 
 </ion-content>
