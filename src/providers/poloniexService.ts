@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Obervable';
 import 'rxjs/Rx';
 
 @Injectable()
 export class PoloniexService{
   private backEndUrl:string;
-  private poloniex;
   constructor(private http:Http){
-    console.log('service is ready...');
+    //console.log('service is ready...');
     this.backEndUrl = "http://localhost:3010"; //WebServer URL : 192.241.247.142
   }
   returnTicker(){

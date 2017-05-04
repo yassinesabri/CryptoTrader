@@ -18,9 +18,14 @@ export class CurrencyInfoPage {
     }
     loadTradeHistory(){
         let now = Math.round(new Date().getTime()/1000);
-        let before = now - 300; //5min
+        let before = now - 600; //5min
         this.poloniexService.returnTradeHistory(this.pair,before,now).subscribe(data =>{
-            this.tradeHistory = data;
+            let help :Array<{}> =  new Array<{}>();
+            let max = data.length > 20 ? 20 : data.length; //just last 20 orders
+            for (var index = 0; index < max; index++) {
+                help.push(data[index]);
+            }
+            this.tradeHistory = help;
         });
     }
     doRefresh(refresher) {
