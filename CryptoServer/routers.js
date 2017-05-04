@@ -12,6 +12,17 @@ app.get('/ticker',function(req, res, next){
         res.status(200).send({"success" : true,"result" : ticker});
     });
 });
+app.get('/tradehistory&:pair&:start&:end',function(req,res,next){
+    console.log(req.params.pair);
+    console.log(req.params.start);
+    console.log(req.params.end);
+    poloniex.returnTradeHistory(req.params.pair, req.params.start, req.params.end, function(err,history){
+      if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : history});
+    });
+});
 app.get('/balances',function(req,res,next){
   poloniex.returnBalances(function(err,balences){
     if(err){

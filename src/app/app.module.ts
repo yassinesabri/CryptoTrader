@@ -10,6 +10,7 @@ import {TradesPage} from '../pages/trades/trades';
 import {SettingsPage} from '../pages/settings/settings';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
+import {CurrencyInfoPage} from '../pages/currencyinfo/currencyinfo';
 import {PoloniexService} from './../providers/poloniexService';
 import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
@@ -20,7 +21,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MarketPage,
     TradesPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    CurrencyInfoPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MarketPage,
     TradesPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    CurrencyInfoPage
   ],
   providers: [
     StatusBar,

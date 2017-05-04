@@ -17,4 +17,7 @@ export class PoloniexService{
   returnBalances(){
     return this.http.get(this.backEndUrl+"/balances").map(res => res.json().result);
   }
+  returnTradeHistory(currencyPair, start, end){
+    return this.http.get(this.backEndUrl+'/tradehistory&'+currencyPair+'&'+start+'&'+end).map(res => res.json().result);
+  }
 }

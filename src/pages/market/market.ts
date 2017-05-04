@@ -3,6 +3,7 @@ import { NavController, App} from 'ionic-angular'; //import App
 import { AuthService } from '../../providers/auth-service';
 import { PoloniexService } from '../../providers/poloniexService';
 import {LoginPage} from '../login/login';
+import {CurrencyInfoPage} from '../currencyinfo/currencyinfo';
 
 @Component({
   selector: 'page-home',
@@ -46,7 +47,7 @@ export class MarketPage implements OnInit,OnDestroy {
        this.ticker = null;
        console.log('LoadMarket called');
        this.poloniexService.returnTicker().subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if(data){
             for(let i=0;i<this.currencies.length;i++){
               if(data[this.market_id+'_'+this.currencies[i]]){
@@ -66,6 +67,13 @@ export class MarketPage implements OnInit,OnDestroy {
   }
   changeMarket(){
     this.LoadMarket();
+  }
+  showCurrencyInfo(marketId:string,currencyId:string){
+    //console.log(marketId+'_'+currecyId);
+    this.nav.push(CurrencyInfoPage,{
+      "marketId" : marketId,
+      "currencyId" : currencyId
+    });
   }
   public logout() {
     this.auth.logout().subscribe(succ => {
