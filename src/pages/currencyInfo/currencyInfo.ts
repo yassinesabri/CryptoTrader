@@ -19,6 +19,7 @@ export class CurrencyInfoPage{
         this.currencyId = navParam.get("currencyId");
         this.pair = this.marketId + '_' + this.currencyId;
         this.loadTradeHistory();
+        this.loadOrderBook();
     }
 
     loadOrderBook() {

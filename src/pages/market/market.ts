@@ -2,7 +2,6 @@ import { Component ,OnInit,OnDestroy} from '@angular/core';
 import { NavController, App} from 'ionic-angular'; //import App
 import { AuthService } from '../../providers/auth-service';
 import { PoloniexService } from '../../providers/poloniexService';
-import {LoginPage} from '../login/login';
 import {CurrencyInfoPage} from '../currencyinfo/currencyinfo';
 
 @Component({
@@ -19,7 +18,7 @@ export class MarketPage implements OnInit,OnDestroy {
   constructor(private nav: NavController, private auth: AuthService,private app:App,private poloniexService : PoloniexService) {
     this.currencies = ['AMP','ARDR','BBR','BCN','BCY','BELA','BITS',
                       'BLK','BTC','BTCD','BTM','BTS','C2','CLAM','CURE','DASH','DCR','DGB','DOGE',
-                      'DOGE','EMC2','ETC','ETH','EXP','FCT','FLDC','FLO','GAME','GNO','GNT',
+                      'EMC2','ETC','ETH','EXP','FCT','FLDC','FLO','GAME','GNO','GNT',
                       'GRC','HUC','HZ','IOC','LBC','LSK','LTC','MAID','MYR','NAUT','NAV','NEOS',
                       'NMC','NOBL','NOTE','NSR','NXC','NXT','OMNI','PASC','PINK','POT','PPC','QBK',
                       'QORA','QTL','RADS','RBY','REP','RIC','SBD','SC','SDC','SJCX','STR',
@@ -73,11 +72,6 @@ export class MarketPage implements OnInit,OnDestroy {
     this.nav.push(CurrencyInfoPage,{
       "marketId" : marketId,
       "currencyId" : currencyId
-    });
-  }
-  public logout() {
-    this.auth.logout().subscribe(succ => {
-      this.app.getRootNav().setRoot(LoginPage)
     });
   }
 }
