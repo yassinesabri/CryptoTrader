@@ -7,7 +7,7 @@ export class PoloniexService{
   private backEndUrl:string;
   constructor(private http:Http){
     //console.log('service is ready...');
-    this.backEndUrl = "http://localhost:3010"; //WebServer URL : 192.241.247.142
+    this.backEndUrl = "http://192.241.247.142:3010"; // WebServer URL : 192.241.247.142
   }
   returnTicker(){
      return this.http.get(this.backEndUrl+"/ticker").map(res => res.json().result);

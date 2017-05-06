@@ -11,26 +11,39 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-label>Trade History</ion-label>
-  <ion-grid *ngIf="tradeHistory" class="tab">
-    <ion-row>
-      <ion-col col-4.5>Date</ion-col>
-      <ion-col col-1.5>Type</ion-col>
-      <ion-col col-3>Price({{marketId}})</ion-col>
-      <ion-col col-3>Amount({{currencyId}})</ion-col>
-      <!--<ion-col col-2>Total({{marketId}})</ion-col>-->
-    </ion-row>
+  <ion-card>
+    <ion-card-header>
+      Trade History
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid *ngIf="tradeHistory" class="tab">
+        <ion-row>
+          <ion-col col-4.5>Date</ion-col>
+          <ion-col col-1.5>Type</ion-col>
+          <ion-col col-3>Price({{marketId}})</ion-col>
+          <ion-col col-3>Amount({{currencyId}})</ion-col>
+          <!--<ion-col col-2>Total({{marketId}})</ion-col>-->
+        </ion-row>
 
-    <ion-row *ngFor="let item of tradeHistory">
-      <ion-col col-4.5>{{item.date}}</ion-col>
-      <ion-col col-1.5>{{item.type}}</ion-col>
-      <ion-col col-3>{{item.rate}}</ion-col>
-      <ion-col col-3>{{item.amount}}</ion-col>
-      <!--<ion-col col-2>{{item.total}}</ion-col>-->
-    </ion-row>
-  </ion-grid>
-  <ion-card *ngIf="asks">
-    <chart [options]="options"></chart>
+        <ion-row *ngFor="let item of tradeHistory">
+          <ion-col col-4.5>{{item.date}}</ion-col>
+          <ion-col col-1.5>{{item.type}}</ion-col>
+          <ion-col col-3>{{item.rate}}</ion-col>
+          <ion-col col-3>{{item.amount}}</ion-col>
+          <!--<ion-col col-2>{{item.total}}</ion-col>-->
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="asks && bids" >
+    <ion-card-header>
+      Market Depth
+    </ion-card-header>
+
+    <ion-card-content class="cards">
+      <chart [options]="askOptions"></chart>
+      <chart [options]="bidOptions"></chart>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>
