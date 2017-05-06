@@ -20,6 +20,14 @@ app.get('/tradehistory&:pair&:start&:end',function(req,res,next){
         res.status(200).send({"success" : true,"result" : history});
     });
 });
+app.get('/orderbook&:pair&:depth',function(req,res,next){
+    poloniex.returnOrderBook(req.params.pair, req.params.depth, function(err,book){
+      if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : book});
+    });
+});
 app.get('/balances',function(req,res,next){
   poloniex.returnBalances(function(err,balences){
     if(err){

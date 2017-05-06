@@ -14,6 +14,8 @@ import {CurrencyInfoPage} from '../pages/currencyinfo/currencyinfo';
 import {PoloniexService} from './../providers/poloniexService';
 import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'Highcharts';
 @NgModule({
   declarations: [
     MyApp,
@@ -28,7 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ChartModule.forRoot(highcharts)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

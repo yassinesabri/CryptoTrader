@@ -29,6 +29,8 @@
       <!--<ion-col col-2>{{item.total}}</ion-col>-->
     </ion-row>
   </ion-grid>
-
+  <ion-card *ngIf="asks">
+    <chart [options]="options"></chart>
+  </ion-card>
 
 </ion-content>
