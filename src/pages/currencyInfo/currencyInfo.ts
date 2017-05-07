@@ -35,9 +35,9 @@ export class CurrencyInfoPage {
         this.poloniexService.returnChartData(this.pair, Number(this.periodId), before, now).subscribe(res => {
             if (res.success) {
                 let data = res.result;
-                this.chartData = new Array(data.length);
+                this.chartData = [];
                 for (let i = 0; i < data.length; i++) {
-                    this.chartData[i] = [data[i].date, parseFloat(data[i].open),
+                    this.chartData[i] = [parseInt(data[i].date), parseFloat(data[i].open),
                     parseFloat(data[i].high), parseFloat(data[i].low), parseFloat(data[i].close)];
                 }
                 this.candlestickOptions = {
