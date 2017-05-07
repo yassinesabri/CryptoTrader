@@ -5,39 +5,93 @@ import { PoloniexService } from '../../providers/poloniexService';
     selector: 'page-info',
     templateUrl: 'currencyInfo.html'
 })
-export class CurrencyInfoPage{
+export class CurrencyInfoPage {
     private marketId: string;
     private currencyId: string;
     private pair: string;
     private tradeHistory: any;
     askOptions: any;
     bidOptions: any;
+    candlestickOptions: any;
     private bids;
     private asks;
+    private chartData;
     constructor(private navCtrl: NavController, private navParam: NavParams, private poloniexService: PoloniexService) {
         this.marketId = navParam.get("marketId");
         this.currencyId = navParam.get("currencyId");
         this.pair = this.marketId + '_' + this.currencyId;
         this.loadTradeHistory();
         this.loadOrderBook();
-    }
+        this.loadChartData();
 
+    }
+    loadChartData() {
+        let now = Math.round(new Date().getTime() / 1000);
+        let before = now - 86400; //1month
+        let period = [300, 900, 1800, 7200, 14400, 86400];
+        this.poloniexService.returnChartData(this.pair, 7200, before, now).subscribe(res => {
+            if (res.success) {
+                let data = res.result;
+                this.chartData = new Array(data.length);
+                for (let i = 0; i < data.length; i++) {
+                    this.chartData[i] = [data[i].date, parseFloat(data[i].open),
+                    parseFloat(data[i].high), parseFloat(data[i].low), parseFloat(data[i].close)];
+                }
+                this.candlestickOptions = {
+                    chart: {
+                        zoomType: 'xy',
+                        width: window.innerWidth-60
+                    },
+                    title: {
+                        text: this.pair + ' stock price'
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            color: 'red',
+                            upColor: 'green'
+                        }
+                    },
+                    legend :{
+                        enabled : false
+                    },
+
+                    series: [{
+                        name: this.pair,
+                        type: 'candlestick',
+                        data: this.chartData,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    }],
+                    yAxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                };
+
+            }
+        });
+    }
     loadOrderBook() {
         let depth = 5;
         this.poloniexService.returnOrderBook(this.pair, depth).subscribe(data => {
             if (data) {
                 this.asks = new Array(depth);
                 this.bids = new Array(depth);
-                for(let i=0;i<depth;i++){
-                    this.asks[i] = [Number(data.asks[i][0]),data.asks[i][1]];
-                    this.bids[i] = [Number(data.bids[i][0]),data.bids[i][1]];
+                for (let i = 0; i < depth; i++) {
+                    this.asks[i] = [Number(data.asks[i][0]), data.asks[i][1]];
+                    this.bids[i] = [Number(data.bids[i][0]), data.bids[i][1]];
                 }
                 //console.log('asks : ' + this.asks);
                 //console.log('bids : ' + this.bids);
                 this.askOptions = {
                     chart: {
                         type: 'area',
-                        width : 300,
+                        width: window.innerWidth-60,
                         zoomType: 'xy'
                     },
                     title: {
@@ -51,7 +105,7 @@ export class CurrencyInfoPage{
                     series: [{
                         name: 'Asks',
                         data: this.asks,
-                        color : '#a42015'
+                        color: '#a42015'
                     }],
                     credits: {
                         enabled: false
@@ -60,7 +114,7 @@ export class CurrencyInfoPage{
                 this.bidOptions = {
                     chart: {
                         type: 'area',
-                        width : 300,
+                        width: window.innerWidth-60,
                         zoomType: 'xy'
                     },
                     title: {
@@ -74,7 +128,7 @@ export class CurrencyInfoPage{
                     series: [{
                         name: 'Bids',
                         data: this.bids,
-                        color : '#339349'
+                        color: '#339349'
                     }],
                     credits: {
                         enabled: false
@@ -104,6 +158,7 @@ export class CurrencyInfoPage{
         console.log('refresh');
         this.loadTradeHistory();
         this.loadOrderBook();
+        this.loadChartData();
         refresher.complete();
     }
 }

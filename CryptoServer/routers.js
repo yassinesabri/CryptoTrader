@@ -28,6 +28,14 @@ app.get('/orderbook&:pair&:depth',function(req,res,next){
         res.status(200).send({"success" : true,"result" : book});
     });
 });
+app.get('/chartdata&:pair&:period&:start&:end',function(req,res,next){
+    poloniex.returnChartData(req.params.pair,req.params.period,req.params.start,req.params.end, function(err,chart){
+      if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : chart});
+    });
+});
 app.get('/balances',function(req,res,next){
   poloniex.returnBalances(function(err,balences){
     if(err){

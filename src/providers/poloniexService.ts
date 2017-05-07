@@ -21,4 +21,7 @@ export class PoloniexService{
   returnOrderBook(currencyPair,depth){
     return this.http.get(this.backEndUrl+'/orderbook&'+currencyPair+'&'+depth).map(res => res.json().result);
   }
+  returnChartData(currencyPair,period,start,end){
+    return this.http.get(this.backEndUrl+'/chartdata&'+currencyPair+'&'+period+'&'+start+'&'+end).map(res => res.json());
+  }
 }

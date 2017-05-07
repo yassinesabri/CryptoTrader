@@ -13,6 +13,14 @@
   </ion-refresher>
   <ion-card>
     <ion-card-header>
+      Stock Price
+    </ion-card-header>
+    <ion-card-content class="cards">
+      <chart [options]="candlestickOptions"></chart>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
       Trade History
     </ion-card-header>
     <ion-card-content>
