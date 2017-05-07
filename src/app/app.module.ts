@@ -15,7 +15,8 @@ import {PoloniexService} from './../providers/poloniexService';
 import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ChartModule } from 'angular2-highcharts';
-import * as highchart from 'highcharts';
+//import * as highchart from 'highcharts';
+import * as highstocks from 'highcharts/highstock';
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +32,7 @@ import * as highchart from 'highcharts';
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    ChartModule.forRoot(highchart)
+    ChartModule.forRoot(highstocks)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
