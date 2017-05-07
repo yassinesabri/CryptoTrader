@@ -18,7 +18,7 @@
     </ion-refresher>
     <ion-item>
       <ion-label>Choose Market</ion-label>
-      <ion-select [(ngModel)]="market_id" (ionChange)="changeMarket()">
+      <ion-select [(ngModel)]="market_id" (ionChange)="changeMarket()" interface="action-sheet">
           <ion-option value="BTC">BTC</ion-option>
           <ion-option value="ETH">ETH</ion-option>
           <ion-option value="XMR">XMR</ion-option>

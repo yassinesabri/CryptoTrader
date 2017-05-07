@@ -10,26 +10,29 @@ export class CurrencyInfoPage {
     private currencyId: string;
     private pair: string;
     private tradeHistory: any;
-    askOptions: any;
-    bidOptions: any;
-    candlestickOptions: any;
+    private askOptions: any;
+    private bidOptions: any;
+    private candlestickOptions: any;
     private bids;
     private asks;
     private chartData;
+    private zoomId;
+    private periodId;
     constructor(private navCtrl: NavController, private navParam: NavParams, private poloniexService: PoloniexService) {
         this.marketId = navParam.get("marketId");
         this.currencyId = navParam.get("currencyId");
         this.pair = this.marketId + '_' + this.currencyId;
         this.loadTradeHistory();
         this.loadOrderBook();
+        this.zoomId = 21600; //6h
+        this.periodId = 300; //5min
         this.loadChartData();
 
     }
     loadChartData() {
         let now = Math.round(new Date().getTime() / 1000);
-        let before = now - 86400; //1month
-        let period = [300, 900, 1800, 7200, 14400, 86400];
-        this.poloniexService.returnChartData(this.pair, 7200, before, now).subscribe(res => {
+        let before = now - Number(this.zoomId); 
+        this.poloniexService.returnChartData(this.pair, Number(this.periodId), before, now).subscribe(res => {
             if (res.success) {
                 let data = res.result;
                 this.chartData = new Array(data.length);
@@ -43,7 +46,7 @@ export class CurrencyInfoPage {
                         width: window.innerWidth-60
                     },
                     title: {
-                        text: this.pair + ' stock price'
+                        text: this.navParam.get("currencyId") + ' STOCK PRICE'
                     },
                     plotOptions: {
                         candlestick: {

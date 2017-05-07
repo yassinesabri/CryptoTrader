@@ -16,6 +16,29 @@
       Stock Price
     </ion-card-header>
     <ion-card-content class="cards">
+      <ion-item>
+        <ion-label>Zoom</ion-label>
+        <ion-select [(ngModel)]="zoomId" (ionChange)="loadChartData()" interface="action-sheet">
+          <ion-option value="21600">6h</ion-option>
+          <ion-option value="86400">24h</ion-option>
+          <ion-option value="172800">2d</ion-option>
+          <ion-option value="345600">4d</ion-option>
+          <ion-option value="604800">1w</ion-option>
+          <ion-option value="1814400">3w</ion-option>
+          
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Period</ion-label>
+        <ion-select [(ngModel)]="periodId" (ionChange)="loadChartData()" interface="action-sheet">
+          <ion-option value="300">5min</ion-option>
+          <ion-option value="900">15min</ion-option>
+          <ion-option value="1800">30min</ion-option>
+          <ion-option value="7200">2h</ion-option>
+          <ion-option value="14400">4h</ion-option>
+          <ion-option value="86400">1d</ion-option>
+        </ion-select>
+      </ion-item>
       <chart [options]="candlestickOptions"></chart>
     </ion-card-content>
   </ion-card>
@@ -43,7 +66,7 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="asks && bids" >
+  <ion-card *ngIf="asks && bids">
     <ion-card-header>
       Market Depth
     </ion-card-header>
