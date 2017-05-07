@@ -2,7 +2,7 @@ import { Component ,OnInit,OnDestroy} from '@angular/core';
 import { NavController, App} from 'ionic-angular'; //import App
 import { AuthService } from '../../providers/auth-service';
 import { PoloniexService } from '../../providers/poloniexService';
-import {CurrencyInfoPage} from '../currencyinfo/currencyinfo';
+import {CurrencyInfoPage} from '../currencyInfo/currencyInfo';
 
 @Component({
   selector: 'page-home',

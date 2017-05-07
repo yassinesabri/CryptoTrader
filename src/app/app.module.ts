@@ -10,12 +10,12 @@ import {TradesPage} from '../pages/trades/trades';
 import {SettingsPage} from '../pages/settings/settings';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
-import {CurrencyInfoPage} from '../pages/currencyinfo/currencyinfo';
+import {CurrencyInfoPage} from '../pages/currencyInfo/currencyInfo';
 import {PoloniexService} from './../providers/poloniexService';
 import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ChartModule } from 'angular2-highcharts';
-import * as highcharts from 'Highcharts';
+import * as highchart from 'highcharts';
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +31,7 @@ import * as highcharts from 'Highcharts';
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    ChartModule.forRoot(highcharts)
+    ChartModule.forRoot(highchart)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
