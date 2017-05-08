@@ -12,8 +12,8 @@ export class SettingsPage {
     console.log('settings called');
     storage.ready().then(() => {
        // set a key/value
-       storage.set('apiKey', 'FEP2GU36-66H13OOV-3BNN10D1-SPVHZ755');
-       storage.set('secretKey', 'f2577bcbe5e3570010bacaa8eb1d486dc7a1faf3418ed6db6678902ed3491368301298d3fdff7d86998e4cc96ccfaa289321044a02f463da0661d415f411cfe8');
+       storage.set('apiKey', 'QS2AWC3G-HE8RPLMR-IIZSUNPW-DE7PEOSU');
+       storage.set('secretKey', '91b3aeb0ca7165847937199640e72c192386ce59bee3930cf838d267517ff9259a20a2078b3c6a8cf988d625f2ec8ae4ce905e29530965bf77571118bfbb0371');
      });
      this.poloniexService.grabKeys();
   }
