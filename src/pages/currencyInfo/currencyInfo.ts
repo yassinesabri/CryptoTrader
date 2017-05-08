@@ -18,7 +18,9 @@ export class CurrencyInfoPage {
     private chartData;
     private zoomId;
     private periodId;
+    private apiKey;
     constructor(private navCtrl: NavController, private navParam: NavParams, private poloniexService: PoloniexService) {
+        console.log('key : '+this.poloniexService.apiKey);
         this.marketId = navParam.get("marketId");
         this.currencyId = navParam.get("currencyId");
         this.pair = this.marketId + '_' + this.currencyId;

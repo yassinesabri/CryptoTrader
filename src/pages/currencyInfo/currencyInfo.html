@@ -25,7 +25,7 @@
           <ion-option value="345600">4d</ion-option>
           <ion-option value="604800">1w</ion-option>
           <ion-option value="1209600">2w</ion-option>
-          
+
         </ion-select>
       </ion-item>
       <ion-item>
@@ -74,6 +74,44 @@
       <chart [options]="askOptions"></chart>
       <chart [options]="bidOptions"></chart>
     </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Buy {{currencyId}}
+    </ion-card-header>
+    <ion-card-content class="cards">
+      <ion-list>
+      <ion-item>
+        <ion-label>Price({{marketId}}): </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Amount({{currencyId}}): </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      </ion-list>
+      <button ion-button color="dark" block>BUY</button>
+    </ion-card-content>
+    
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Sell {{currencyId}}
+    </ion-card-header>
+    <ion-card-content class="cards">
+      <ion-list>
+      <ion-item>
+        <ion-label>Price({{marketId}}): </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Amount({{currencyId}}): </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      </ion-list>
+      <button ion-button color="dark" block>SELL</button>
+    </ion-card-content>
+    
   </ion-card>
 
 </ion-content>

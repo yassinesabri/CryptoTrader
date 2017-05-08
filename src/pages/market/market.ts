@@ -44,7 +44,7 @@ export class MarketPage implements OnInit,OnDestroy {
   }
   LoadMarket(){
        this.ticker = null;
-       console.log('LoadMarket called');
+       //console.log('LoadMarket called');
        this.poloniexService.returnTicker().subscribe(data => {
         //console.log(data);
         if(data){

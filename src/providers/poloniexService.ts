@@ -1,19 +1,37 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/Rx';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class PoloniexService{
   private backEndUrl:string;
-  constructor(private http:Http){
-    //console.log('service is ready...');
+  public apiKey:string;
+  public secretKey:string;
+  constructor(private http:Http,private storage:Storage){
+    console.log('service is ready...');
+    this.grabKeys();
     this.backEndUrl = "http://localhost:3010"; // WebServer URL : 192.241.247.142
+  }
+  grabKeys(){
+    this.storage.ready().then(() => {
+
+       this.storage.get('apiKey').then((api) => {
+         console.log('apikey : ', api);
+         this.apiKey = api;
+       })
+       this.storage.get('secretKey').then((api) => {
+         console.log('secret key : ', api);
+         this.secretKey = api;
+       })
+
+     });
   }
   returnTicker(){
      return this.http.get(this.backEndUrl+"/ticker").map(res => res.json().result);
   }
-  returnBalances(){
-    return this.http.get(this.backEndUrl+"/balances").map(res => res.json().result);
+  returnBalances(apiKey:string,secretKey:string){
+    return this.http.get(this.backEndUrl+"/balances&"+apiKey+"&"+secretKey).map(res => res.json());
   }
   returnTradeHistory(currencyPair, start, end){
     return this.http.get(this.backEndUrl+'/tradehistory&'+currencyPair+'&'+start+'&'+end).map(res => res.json().result);
