@@ -21,7 +21,28 @@
         refreshingText="Refreshing...">
       </ion-refresher-content>
    </ion-refresher>
-    <ion-label> Your balance
+  <ion-card *ngIf="!isApiKey">
+    <ion-card-header>
+    Save API Key 
+    </ion-card-header>
+    <ion-card-content>
+          <ion-list>
+              <ion-item>
+                <ion-label floating>API Key</ion-label>
+                <ion-input type="text"  [(ngModel)]="apiKey"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label floating>Secret Key</ion-label>
+                <ion-input type="password"  [(ngModel)]="secretKey"></ion-input>
+              </ion-item>
+              <button ion-button full class="saveButton" (click)='saveKeys()'>Save</button>
+          </ion-list>
+    </ion-card-content>
+ </ion-card>
+ <button ion-button full class="saveButton" (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
+ <ion-card *ngIf="isApiKey">
+   <ion-label> Your balance
     </ion-label>
     <div *ngIf="!balance">
       No Connection Lost.Pull to Refresh
@@ -40,5 +61,5 @@
         <ion-col width-20 >Deposit/Withdraw</ion-col>
       </ion-row>
     </ion-grid>
-
+ </ion-card>
 </ion-content>
