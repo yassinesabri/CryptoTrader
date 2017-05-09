@@ -8,10 +8,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-list-header>KEYS</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <button ion-button color="secondary" block (click)="generate()">Generate Keys</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="danger" block (click)="remove()">Remove Keys</button>
     </ion-item>
   </ion-list>
 </ion-content>

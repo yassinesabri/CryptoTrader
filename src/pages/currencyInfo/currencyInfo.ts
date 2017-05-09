@@ -289,6 +289,7 @@ export class CurrencyInfoPage {
         this.loadTradeHistory();
         this.loadOrderBook();
         this.loadChartData();
+        this.loadBuySellOptions();
         refresher.complete();
     }
 }
