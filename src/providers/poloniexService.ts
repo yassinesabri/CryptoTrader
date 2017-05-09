@@ -42,4 +42,10 @@ export class PoloniexService{
   returnChartData(currencyPair,period,start,end){
     return this.http.get(this.backEndUrl+'/chartdata&'+currencyPair+'&'+period+'&'+start+'&'+end).map(res => res.json());
   }
+  buy(apikey,secretKey,currencyPair,amount){
+    return this.http.get(this.backEndUrl+'/buy&'+apikey+"&"+secretKey+"&"+currencyPair+"&"+amount).map(res => res.json());
+  }
+  sell(apikey,secretKey,currencyPair,amount){
+    return this.http.get(this.backEndUrl+'/sell&'+apikey+"&"+secretKey+"&"+currencyPair+"&"+amount).map(res => res.json());
+  }
 }

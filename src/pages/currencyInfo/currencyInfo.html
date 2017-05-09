@@ -77,39 +77,61 @@
   </ion-card>
   <ion-card>
     <ion-card-header>
-      Buy {{currencyId}}
+      Buy {{currencyId}}<br>
+      <em><strong>You have : </strong></em><em>{{buy_sell.buyBalance}} {{marketId}}</em><br>
+      <em><strong>Lowest Ask : </strong></em><em>{{buy_sell.ask}} {{marketId}}</em><br>
     </ion-card-header>
     <ion-card-content class="cards">
       <ion-list>
       <ion-item>
         <ion-label>Price({{marketId}}): </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [value]="buy_sell.ask" readOnly="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Amount({{currencyId}}): </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="buyAmount" (keyup)="calculateBuy()" #buyQuery></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total({{marketId}}): </ion-label>
+        <ion-input type="text" [value]="buyTotal" readOnly="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><strong>Fee : </strong>0.15/0.25%</ion-label>
       </ion-item>
       </ion-list>
-      <button ion-button color="dark" block>BUY</button>
+      <button ion-button color="danger" block (click)="submitBuy();buyQuery.value='';buyTotal=0">
+        <ion-icon name="star"></ion-icon> BUY
+      </button>
     </ion-card-content>
     
   </ion-card>
   <ion-card>
     <ion-card-header>
-      Sell {{currencyId}}
+      Sell {{currencyId}}<br>
+      <em><strong>You have : </strong></em><em>{{buy_sell.sellBalance}} {{currencyId}}</em><br>
+      <em><strong>Highest Bid : </strong></em><em>{{buy_sell.bid}} {{marketId}}</em><br>
     </ion-card-header>
     <ion-card-content class="cards">
       <ion-list>
       <ion-item>
         <ion-label>Price({{marketId}}): </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [value]="buy_sell.bid" readOnly="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Amount({{currencyId}}): </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="sellAmount" (keyup)="calculateSell()" #sellQuery></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total({{marketId}}): </ion-label>
+        <ion-input type="text" [value]="sellTotal" readOnly="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><strong>Fee : </strong>0.15/0.25%</ion-label>
       </ion-item>
       </ion-list>
-      <button ion-button color="dark" block>SELL</button>
+      <button ion-button color="danger" block (click)="submitSell();sellQuery.value='';sellTotal=0">
+        <ion-icon name="star"></ion-icon> SELL
+      </button>
     </ion-card-content>
     
   </ion-card>
