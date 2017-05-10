@@ -43,4 +43,51 @@ app.get('/balances&:apiKey&:secretKey',function(req,res,next){
         res.status(200).send({"success" : true,"result" : balences});
     });
 });
+app.get('/buy&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.buy(req.params.pair,0.00000173,req.params.amount,null,null,null,function(err,buy){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : buy});
+    });
+});
+app.get('/sell&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.sell(req.params.pair,0.00000173,req.params.amount,null,null,null,function(err,sell){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : sell});
+    });
+});
 
+app.get('/depositaddresses&:apiKey&:secretKey',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnDepositAddresses(function(err,deposit){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : deposit});
+    });
+});
+app.get('/withdraw&:apiKey&:secretKey',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnDepositAddresses(function(err,deposit){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : deposit});
+    });
+});
+//returnMyTradeHistory(currencyPair, start, end, callback)
+app.get('/mytradehistory&:pair&:start&:end',function(req,res,next){
+    poloniex.returnMyTradeHistory(null, null, null, function(err,mytradehistory){
+      if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : mytradehistory});
+    });
+});
+//returnDepositAddresses(callback)
+//withdraw(currency, amount, address, callback)

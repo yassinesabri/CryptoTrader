@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController, App } from 'ionic-angular'; //import App
 import { PoloniexService } from '../../providers/poloniexService';
 import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
+import { DepositsPage } from '../deposit/deposits';
 
 @Component({
   selector: 'page-trades',
@@ -15,19 +17,23 @@ export class TradesPage implements OnInit, OnDestroy {
   currencies: Array<string>;
   markets: Array<string>;
   balance:any;
-  isApiKey:any;
-  constructor(private nav: NavController, private app: App, private poloniexService: PoloniexService,public storage:Storage) {
+  isApiKey:boolean;
+  action:any;
+  constructor(private nav: NavController, private app: App, private poloniexService: PoloniexService,public storage:Storage,public alertCtrl: AlertController) {
      // Or to get a key/value pair
-     this.storage.get('apiKey').then((val) => {
+     this.isApiKey=true;
+     this.apiKey=this.poloniexService.apiKey;
+     this.secretKey=this.poloniexService.secretKey;
+     /*this.storage.get('apiKey').then((val) => {
        this.apiKey=val;
      })
      this.storage.get('secretKey').then((val) => {
        this.secretKey=val;
        //test to be removed
        console.log('secrect key : ',val);
-     })
+     })*/
      if(this.apiKey==null || this.secretKey==null){
-       this.isApiKey=true;
+       this.isApiKey=false;
      }
     this.coin = "BTC";
     this.markets = ['BTC_BBR', 'BTC_BCN', 'BTC_BELA', 'BTC_BITS', 'BTC_BLK', 'BTC_BTCD', 'BTC_BTM', 'BTC_BTS', 'BTC_BURST', 'BTC_C2', 'BTC_CLAM', 'BTC_CURE', 'BTC_DASH'];
@@ -59,12 +65,10 @@ export class TradesPage implements OnInit, OnDestroy {
   }
   LoadBalances() {
     console.log('LoadBalence called');
-    //console.log('key : '+this.poloniexService.apiKey);
+    console.log('key : '+this.poloniexService.apiKey);
     this.poloniexService.returnBalances(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
-      //console.log(data);
       this.balance = data.result;
-
-
+      console.log('hahiya',data);
     });
 
   }
@@ -73,7 +77,13 @@ export class TradesPage implements OnInit, OnDestroy {
     this.secretKey=null;
     this.storage.set('apiKey',null);
     this.storage.set('secretKey',null);
-    this.isApiKey=false;
+    this.isApiKey=!this.isApiKey;
+  }
+  showDeposit():void{
+    this.nav.push(DepositsPage);
+  }
+  moveToSecondPage(){
+     this.nav.push(DepositsPage);
   }
 
 }

@@ -1,3 +1,8 @@
+<ion-tabs selectedIndex="">
+  <ion-tab [root]="tab1Root" tabTitle="Market" tabIcon="pulse"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Trades" tabIcon="logo-bitcoin"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab>
+</ion-tabs>
 <ion-header>
  <ion-navbar>
     <button ion-button menuToggle>
@@ -36,25 +41,22 @@
                 <ion-label floating>Secret Key</ion-label>
                 <ion-input type="password"  [(ngModel)]="secretKey"></ion-input>
               </ion-item>
-              <button ion-button full class="saveButton" (click)='saveKeys()'>Save</button>
+              <button ion-button color="dark" block (click)='saveKeys()'>Save</button>
           </ion-list>
     </ion-card-content>
  </ion-card>
- <button ion-button full class="saveButton" (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
- <ion-card *ngIf="isApiKey">
-   <ion-label> Your balance
-    </ion-label>
-    <div *ngIf="!balance">
-      No Connection Lost.Pull to Refresh
-    </div>
-    <ion-grid *ngIf="balance">
+ <button ion-button color="dark" block  (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
+ <ion-card >
+   <ion-card-header> My Balance
+    </ion-card-header>
+    <ion-grid *ngIf="balance&&isApiKey">
       <ion-row>
         <ion-col width-25>Coin</ion-col>
         <ion-col width-35>Total Balance</ion-col>
         <ion-col width-20>BTC Value</ion-col>
         <ion-col width-20>Action</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currencies">
+      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
         <ion-col width-25 >{{currency}}</ion-col>
         <ion-col width-35 >{{balance[currency]}}</ion-col>
         <ion-col width-20 >{{balance[currency]}}</ion-col>
@@ -62,4 +64,14 @@
       </ion-row>
     </ion-grid>
  </ion-card>
+ <ion-card >
+   <ion-card-header > My Trade History
+   </ion-card-header>
+   <ion-card-content *ngIf="isApiKey">
+   No trades
+
+You have not made any trades yet. Once you make some trades, they will appear here.
+</ion-card-content>
+</ion-card>
 </ion-content>
+
