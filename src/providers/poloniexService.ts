@@ -46,10 +46,5 @@ export class PoloniexService{
     console.log('service',this.apiKey)
     return this.http.get(this.backEndUrl+"/depositaddresses&"+apiKey+"&"+secretKey).map(res => res.json());
   }
-   withdraw(apikey,secretKey,currency,amount,address){
-    return this.http.get(this.backEndUrl+'/withdraw&'+apikey+"&"+secretKey+"&"+currency+"&"+amount+"&"+address).map(res => res.json());
-  }
-  returnMyTradeHistory(currencyPair, start, end){
-    return this.http.get(this.backEndUrl+'/mytradehistory&'+currencyPair+'&'+start+'&'+end).map(res => res.json().result);
-  }
+
 }
