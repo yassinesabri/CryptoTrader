@@ -61,3 +61,13 @@ app.get('/sell&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
         res.status(200).send({"success" : true,"result" : sell});
     });
 });
+app.get('/depositaddresses&:apiKey&:secretKey',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnDepositAddresses(function(err,deposit){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : deposit});
+    });
+});
+

@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      MY HISTORY
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-card>
+<ion-list radio-group [(ngModel)]="action" (ionChange)="changeAction()">
+  <ion-list-header>
+    Action
+  </ion-list-header>
+  <ion-item >
+    <ion-label>Deposit</ion-label>
+    <ion-radio checked="true" value="Deposit"></ion-radio>
+  </ion-item>
+  <ion-card *ngIf="showDep">
+  <ion-card-header>
+    Your Synereo AMP Deposit Address :
+  </ion-card-header>
+  <ion-card-content>
+      {{deposit}}
+  </ion-card-content>
+</ion-card>
+  <ion-item>
+    <ion-label>Withdraw</ion-label>
+    <ion-radio value="withdraw" ></ion-radio>
+  </ion-item>
+  <ion-card *ngIf="showWith">
+  <ion-card-header>
+    You have 0.00000000 BELA available for withdrawal. 0.00000000 BELA is held on orders.
+  </ion-card-header>
+  <ion-card-content>
+      <ion-list>
+      <ion-item>
+        <ion-label>Address : </ion-label>
+        <ion-input type="text" [(ngModel)]="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Amount : </ion-label>
+        <ion-input type="text" [(ngModel)]="amount"></ion-input>
+      </ion-item>
+      </ion-list>
+      <button ion-button color="dark" block (click)="withdraw()">Withdraw</button>
+  </ion-card-content>
+</ion-card>
+</ion-list>
+</ion-card>
+<ion-card>
+    <ion-card-header>
+        My DEPOSIT HISTORY
+    </ion-card-header>
+    <ion-card-content>
+    <ion-grid >
+      <ion-row>
+        <ion-col width-40>Stauts</ion-col>
+        <ion-col width-35>Coin</ion-col>
+        <ion-col width-25>Amount</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
+        <ion-col width-40 >{{currency}}</ion-col>
+        <ion-col width-35 >{{balance[currency]}}</ion-col>
+        <ion-col width-25 >{{balance[currency]}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div >
+    You have not made any Deposit. Once you do, they will appear here.
+    </div>
+    </ion-card-content>
+</ion-card>
+<ion-card>
+    <ion-card-header>
+        My WITHDRAWAL HISTORY
+    </ion-card-header>
+    <ion-card-content>
+    <ion-grid >
+      <ion-row>
+        <ion-col width-25>Stauts</ion-col>
+        <ion-col width-35>Coin</ion-col>
+        <ion-col width-20>Amount</ion-col>
+      </ion-row>
+      
+      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
+        <ion-col width-25 >{{currency}}</ion-col>
+        <ion-col width-35 >{{balance[currency]}}</ion-col>
+        <ion-col width-20 >{{balance[currency]}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div >
+    You have not made any withdrawals. Once you do, they will appear here.
+    </div>
+    </ion-card-content>
+</ion-card>
+<ion-card>
+    <ion-card-header>
+        MY OPEN ORDERS
+    </ion-card-header>
+    <ion-card-content>
+    <ion-grid >
+      <ion-row>
+        <ion-col width-40>Order Number</ion-col>
+        <ion-col width-35>Type</ion-col>
+        <ion-col width-25>Rate</ion-col>
+        <ion-col width-25>Amount</ion-col>
+        <ion-col width-25>Total</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
+        <ion-col width-40 >{{currency}}</ion-col>
+        <ion-col width-35 >{{balance[currency]}}</ion-col>
+        <ion-col width-25 >{{balance[currency]}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <div >
+    You have no open orders.
+    </div>
+    </ion-card-content>
+</ion-card>

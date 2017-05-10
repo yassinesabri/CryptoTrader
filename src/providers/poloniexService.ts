@@ -48,4 +48,8 @@ export class PoloniexService{
   sell(apikey,secretKey,currencyPair,amount){
     return this.http.get(this.backEndUrl+'/sell&'+apikey+"&"+secretKey+"&"+currencyPair+"&"+amount).map(res => res.json());
   }
+  returnDepositAddresses(apiKey:string,secretKey:string){
+    console.log('service',this.apiKey)
+    return this.http.get(this.backEndUrl+"/depositaddresses&"+apiKey+"&"+secretKey).map(res => res.json());
+  }
 }
