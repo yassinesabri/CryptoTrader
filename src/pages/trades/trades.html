@@ -1,19 +1,9 @@
-<ion-tabs selectedIndex="">
-  <ion-tab [root]="tab1Root" tabTitle="Market" tabIcon="pulse"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Trades" tabIcon="logo-bitcoin"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab>
-</ion-tabs>
 <ion-header>
  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Trades</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -41,8 +31,8 @@
                 <ion-label floating>Secret Key</ion-label>
                 <ion-input type="password"  [(ngModel)]="secretKey"></ion-input>
               </ion-item>
-              <button ion-button color="dark" block (click)='saveKeys()'>Save</button>
           </ion-list>
+          <button ion-button color="dark" block (click)='saveKeys()'>Save</button>
     </ion-card-content>
  </ion-card>
  <button ion-button color="dark" block  (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
