@@ -70,4 +70,12 @@ app.get('/depositaddresses&:apiKey&:secretKey',function(req,res,next){
         res.status(200).send({"success" : true,"result" : deposit});
     });
 });
+app.get('/currencies',function(req,res,next){
+    poloniex.returnCurrencies(function(err, currencies) {
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : currencies});
+    });
+});
 

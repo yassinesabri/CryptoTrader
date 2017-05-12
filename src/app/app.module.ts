@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
 import {CurrencyInfoPage} from '../pages/currencyInfo/currencyInfo';
 import {PoloniexService} from './../providers/poloniexService';
+import {FilterService} from './../providers/filterService';
 import {HttpModule} from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ChartModule } from 'angular2-highcharts';
@@ -52,7 +53,8 @@ import * as highstocks from 'highcharts/highstock';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    PoloniexService
+    PoloniexService,
+    FilterService
   ]
 })
 export class AppModule {}

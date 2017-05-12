@@ -11,7 +11,7 @@ export class PoloniexService{
   constructor(private http:Http,private storage:Storage){
     console.log('service is ready...');
     this.grabKeys();
-    this.backEndUrl = "http://192.241.247.142:3010"; // WebServer URL : 192.241.247.142
+    this.backEndUrl = "http://localhost:3010"; // WebServer URL : 192.241.247.142
   }
   grabKeys(){
     this.storage.ready().then(() => {
@@ -51,5 +51,8 @@ export class PoloniexService{
   returnDepositAddresses(apiKey:string,secretKey:string){
     console.log('service',this.apiKey)
     return this.http.get(this.backEndUrl+"/depositaddresses&"+apiKey+"&"+secretKey).map(res => res.json());
+  }
+  returnCurrencies(){
+    return this.http.get(this.backEndUrl+"/currencies").map(res => res.json());
   }
 }

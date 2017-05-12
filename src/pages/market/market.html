@@ -18,7 +18,7 @@
     </ion-refresher>
     <ion-item>
       <ion-label>Choose Market</ion-label>
-      <ion-select [(ngModel)]="market_id" (ionChange)="changeMarket()" interface="action-sheet">
+      <ion-select [(ngModel)]="market_id" (ionChange)="LoadMarket()" interface="action-sheet">
           <ion-option value="BTC">BTC</ion-option>
           <ion-option value="ETH">ETH</ion-option>
           <ion-option value="XMR">XMR</ion-option>
@@ -26,6 +26,7 @@
       </ion-select>
     </ion-item>
     <hr>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
     <ion-grid *ngIf="ticker">
       <ion-row>
         <ion-col col-2>Coin</ion-col>
@@ -34,7 +35,7 @@
         <ion-col col-2.5>Change</ion-col>
       </ion-row>
       
-      <ion-row *ngFor="let currency of currencies" class="tab" (click)="showCurrencyInfo(market_id,currency)">
+      <ion-row *ngFor="let currency of currenciesToDisplay" class="tab" (click)="showCurrencyInfo(market_id,currency)">
           <ion-col col-2 *ngIf="ticker[market_id+'_'+currency]">{{currency}}</ion-col>
           <ion-col col-4 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].last}}</ion-col>
           <ion-col col-3.5 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].baseVolume}}</ion-col>
