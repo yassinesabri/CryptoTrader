@@ -39,7 +39,7 @@
           <ion-col col-2 *ngIf="ticker[market_id+'_'+currency]">{{currency}}</ion-col>
           <ion-col col-4 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].last}}</ion-col>
           <ion-col col-3.5 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].baseVolume}}</ion-col>
-          <ion-col col-2.5 *ngIf="ticker[market_id+'_'+currency]">{{ticker[market_id+'_'+currency].percentChange}}</ion-col>
+          <ion-col col-2.5 *ngIf="ticker[market_id+'_'+currency]" class="{{ticker[market_id+'_'+currency].color}}">{{ticker[market_id+'_'+currency].percentChange}}</ion-col>
       </ion-row>
     </ion-grid>
 
