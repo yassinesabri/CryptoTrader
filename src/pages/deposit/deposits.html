@@ -5,7 +5,7 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
+<ion-content>
 <ion-card>
 <ion-list radio-group [(ngModel)]="action" (ionChange)="changeAction()">
   <ion-list-header>
@@ -17,10 +17,10 @@
   </ion-item>
   <ion-card *ngIf="showDep">
   <ion-card-header>
-    Your Synereo AMP Deposit Address :
+    Your {{currencyId}} Deposit Address :
   </ion-card-header>
   <ion-card-content>
-      {{deposit}}
+      {{address}}
   </ion-card-content>
 </ion-card>
   <ion-item>
@@ -29,17 +29,17 @@
   </ion-item>
   <ion-card *ngIf="showWith">
   <ion-card-header>
-    You have 0.00000000 BELA available for withdrawal. 0.00000000 BELA is held on orders.
+    You have 0.00000000 {{currencyId}} available for withdrawal.
   </ion-card-header>
   <ion-card-content>
       <ion-list>
       <ion-item>
         <ion-label>Address : </ion-label>
-        <ion-input type="text" [(ngModel)]="address"></ion-input>
+        <ion-input type="text" [(ngModel)]="withdrawAddress"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Amount : </ion-label>
-        <ion-input type="text" [(ngModel)]="amount"></ion-input>
+        <ion-input type="text" [(ngModel)]="withdrawAmount"></ion-input>
       </ion-item>
       </ion-list>
       <button ion-button color="dark" block (click)="withdraw()">Withdraw</button>
@@ -58,15 +58,15 @@
         <ion-col width-35>Coin</ion-col>
         <ion-col width-25>Amount</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
-        <ion-col width-40 >{{currency}}</ion-col>
-        <ion-col width-35 >{{balance[currency]}}</ion-col>
-        <ion-col width-25 >{{balance[currency]}}</ion-col>
+      <div *ngIf="depositHistory?.length < 1">
+      You have not made any Deposit. Once you do, they will appear here.
+      </div>
+      <ion-row *ngFor="let dH of depositHistory">
+        <ion-col width-40 >{{dH.status}}</ion-col>
+        <ion-col width-35 >{{dH.coin}}</ion-col>
+        <ion-col width-25 >{{dH.amount}}</ion-col>
       </ion-row>
     </ion-grid>
-    <div >
-    You have not made any Deposit. Once you do, they will appear here.
-    </div>
     </ion-card-content>
 </ion-card>
 <ion-card>
@@ -80,16 +80,15 @@
         <ion-col width-35>Coin</ion-col>
         <ion-col width-20>Amount</ion-col>
       </ion-row>
-      
-      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
-        <ion-col width-25 >{{currency}}</ion-col>
-        <ion-col width-35 >{{balance[currency]}}</ion-col>
-        <ion-col width-20 >{{balance[currency]}}</ion-col>
+      <div *ngIf="withdrawHistory?.length < 1">
+      You have not made any withdrawals. Once you do, they will appear here.
+     </div>
+      <ion-row *ngFor="let wH of withdrawHistory" >
+        <ion-col width-25 >{{wH.status}}</ion-col>
+        <ion-col width-35 >{{wH.coin}}</ion-col>
+        <ion-col width-20 >{{wH.amount}}</ion-col>
       </ion-row>
     </ion-grid>
-    <div >
-    You have not made any withdrawals. Once you do, they will appear here.
-    </div>
     </ion-card-content>
 </ion-card>
 <ion-card>
@@ -105,14 +104,15 @@
         <ion-col width-25>Amount</ion-col>
         <ion-col width-25>Total</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
-        <ion-col width-40 >{{currency}}</ion-col>
-        <ion-col width-35 >{{balance[currency]}}</ion-col>
-        <ion-col width-25 >{{balance[currency]}}</ion-col>
-      </ion-row>
-    </ion-grid>
-    <div >
+      <div >
     You have no open orders.
     </div>
+      <ion-row *ngFor="" >
+        <ion-col width-40 ></ion-col>
+        <ion-col width-35 ></ion-col>
+        <ion-col width-25 ></ion-col>
+      </ion-row>
+    </ion-grid>
     </ion-card-content>
 </ion-card>
+</ion-content>

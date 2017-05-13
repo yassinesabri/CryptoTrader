@@ -52,6 +52,7 @@ app.get('/buy&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
         res.status(200).send({"success" : true,"result" : buy});
     });
 });
+
 app.get('/sell&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
     poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
     poloniexTrade.sell(req.params.pair,0.00000173,req.params.amount,null,null,null,function(err,sell){
@@ -63,11 +64,47 @@ app.get('/sell&:apiKey&:secretKey&:pair&:amount',function(req,res,next){
 });
 app.get('/depositaddresses&:apiKey&:secretKey',function(req,res,next){
     poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
-    poloniexTrade.returnDepositAddresses(function(err,deposit){
+    poloniexTrade.returnDepositAddresses(function(err,adresses){
         if(err){
             return res.json({"success" : false,"err" : err});
         }
-        res.status(200).send({"success" : true,"result" : deposit});
+        res.status(200).send({"success" : true,"result" : adresses});
+    });
+});
+app.get('/generatenewaddress&:apiKey&:secretKey&:currency',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.generateNewAddress(req.params.currency,function(err,currency){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : currency});
+    });
+});
+app.get('/depositswithdrawals&:apiKey&:secretKey&:start&:end',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnDepositsWithdrawals(req.params.start,req.params.end,function(err,history){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : history});
     });
 });
 
+app.get('/withdraw&:apiKey&:secretKey&:currency&:amount:&address',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.withdraw(req.params.currency,req.params.amount,req.params.address,function(err,withdraw){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : withdraw});
+    });
+});
+app.get('/MyTradeHistory&:apiKey&:secretKey&:currencyPair&:start:&end',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnMyTradeHistory(req.params.currencyPair,req.params.start,req.params.end,function(err,TradeHistory){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : TradeHistory});
+    });
+});

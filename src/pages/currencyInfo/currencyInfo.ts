@@ -110,6 +110,7 @@ export class CurrencyInfoPage {
 
     }
     submitSell() {
+    
         if (isNaN(this.sellAmount) || this.sellAmount <= 0) {
             let alert = this.alertCtrl.create({
                 title: 'Sell Failed',
