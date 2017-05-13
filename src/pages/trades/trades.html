@@ -44,24 +44,41 @@
         <ion-col width-25>Coin</ion-col>
         <ion-col width-35>Total Balance</ion-col>
         <ion-col width-20>BTC Value</ion-col>
-        <ion-col width-20>Action</ion-col>
+        <ion-col width-20 id="Action">Action</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currencies" (click)="showDeposit()">
+      <ion-row *ngFor="let currency of currencies" >
         <ion-col width-25 >{{currency}}</ion-col>
         <ion-col width-35 >{{balance[currency]}}</ion-col>
         <ion-col width-20 >{{balance[currency]}}</ion-col>
-        <ion-col width-20 >Deposit/Withdraw</ion-col>
+        <ion-col width-20 (click)="showDeposit(currency,balance[currency])" >Deposit/Withdraw</ion-col>
       </ion-row>
     </ion-grid>
  </ion-card>
  <ion-card >
    <ion-card-header > My Trade History
    </ion-card-header>
-   <ion-card-content *ngIf="isApiKey">
-   No trades
+   
+    <ion-grid *ngIf="balance&&isApiKey">
+      <ion-row>
+        <ion-col width-25>Trade ID</ion-col>
+        <ion-col width-35>Type</ion-col>
+        <ion-col width-20>Price</ion-col>
+        <ion-col width-20 >Amount</ion-col>
+        <ion-col width-20 >Transaction Date</ion-col>
+      </ion-row>
+      <ion-card-content *ngIf="isApiKey">
+   <p>No trades</p>
 
-You have not made any trades yet. Once you make some trades, they will appear here.
+    <p>You have not made any trades yet. Once you make some trades, they will appear here.</p>
 </ion-card-content>
+      <ion-row *ngFor="" >
+        <ion-col width-25 ></ion-col>
+        <ion-col width-35 ></ion-col>
+        <ion-col width-20 ></ion-col>
+        <ion-col width-20 ></ion-col>
+        <ion-col width-20 ></ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-card>
 </ion-content>
 

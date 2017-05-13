@@ -12,7 +12,7 @@ export class PoloniexService{
     console.log('service is ready...');
     this.grabKeys();
     this.backEndUrl = "http://localhost:3010"; // WebServer URL : 192.241.247.142
-  }
+  }//http://localhost:3010/ticker
   grabKeys(){
     this.storage.ready().then(() => {
 
@@ -49,10 +49,22 @@ export class PoloniexService{
     return this.http.get(this.backEndUrl+'/sell&'+apikey+"&"+secretKey+"&"+currencyPair+"&"+amount).map(res => res.json());
   }
   returnDepositAddresses(apiKey:string,secretKey:string){
-    console.log('service',this.apiKey)
     return this.http.get(this.backEndUrl+"/depositaddresses&"+apiKey+"&"+secretKey).map(res => res.json());
   }
   returnCurrencies(){
     return this.http.get(this.backEndUrl+"/currencies").map(res => res.json());
   }
+  generateNewAddress(apikey:string,secretKey:string,currency:string){
+    return this.http.get(this.backEndUrl+'/generatenewaddress&'+apikey+"&"+secretKey+"&"+currency).map(res => res.json());
+  }
+  returnDepositsWithdrawals(apikey:string,secretKey:string,start:number,end:number){
+    return this.http.get(this.backEndUrl+'/depositswithdrawals&'+apikey+"&"+secretKey+"&"+start+"&"+end).map(res => res.json());
+  }
+  withdraw(apikey:string,secretKey:string,currency:string,amount:number,address:string){
+    return this.http.get(this.backEndUrl+'/depositswithdrawals&'+apikey+"&"+secretKey+"&"+currency+"&"+amount+"&"+address).map(res => res.json());
+  }
+  returnMyTradeHistory(apikey:string,secretKey:string,currencyPair:string,start:number,end:number){
+    return this.http.get(this.backEndUrl+'/MyTradeHistory&'+apikey+"&"+secretKey+"&"+currencyPair+"&"+start+"&"+end).map(res => res.json());
+  }
 }
+ 

@@ -47,6 +47,7 @@ export class TradesPage implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.LoadBalances();
+    this.ShowMyTradeHistory();
   }
   ngOnDestroy() {
 
@@ -79,11 +80,16 @@ export class TradesPage implements OnInit, OnDestroy {
     this.storage.set('secretKey',null);
     this.isApiKey=!this.isApiKey;
   }
-  showDeposit():void{
-    this.nav.push(DepositsPage);
+  showDeposit(currencyId:string,coinBalannce:any):void{
+    
+    this.nav.push(DepositsPage,{
+      "currencyId" : currencyId,
+      "balance": coinBalannce
+    });
   }
-  moveToSecondPage(){
-     this.nav.push(DepositsPage);
+  ShowMyTradeHistory(){
+    //this.poloniexService.withdraw(this.poloniexService.apiKey, this.poloniexService.secretKey, this.currencyPair,this.start,this.end).subscribe(data => {
+               // console.log('THE HISTORY',data);
   }
 
 }
