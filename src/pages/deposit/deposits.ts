@@ -30,6 +30,7 @@ export class DepositsPage implements OnInit,OnDestroy {
     constructor(private navParams: NavParams, public poloniexService: PoloniexService,public storage:Storage, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
         this.currencyId = navParams.get("currencyId");
         this.balanceId = navParams.get("balance");
+        this.address = navParams.get("depositAddress");
     }
     changeAction(): void {
         if (this.action == 'Deposit') {
@@ -37,17 +38,7 @@ export class DepositsPage implements OnInit,OnDestroy {
             this.showWith = false;
             console.log('deposit called');
             //console.log('key : '+this.poloniexService.apiKey);
-            //this.poloniexService.returnDepositAddresses(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
-           
-           this.poloniexService.generateNewAddress(this.poloniexService.apiKey, this.poloniexService.secretKey, this.currencyId).subscribe(data => {
-                
-                this.deposit=data.result;
-                
-                    this.address=this.deposit["response"];
-                //this.address=this.deposit['response'];
-                console.log("here it is2 ",this.address);
-                
-            });
+            
             
         }
         else if (this.action == 'withdraw') {

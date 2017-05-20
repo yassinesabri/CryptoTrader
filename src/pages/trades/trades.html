@@ -46,7 +46,7 @@
         <ion-col width-20>BTC Value</ion-col>
         <ion-col width-20 id="Action">Action</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currencies" >
+      <ion-row *ngFor="let currency of currenciesBalance"  >
         <ion-col width-25 >{{currency}}</ion-col>
         <ion-col width-35 >{{balance[currency]}}</ion-col>
         <ion-col width-20 >{{balance[currency]}}</ion-col>
