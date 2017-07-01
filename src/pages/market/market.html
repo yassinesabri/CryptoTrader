@@ -1,8 +1,5 @@
 <ion-header>
  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>MARKETS</ion-title>
   </ion-navbar>
 </ion-header>
@@ -25,7 +22,7 @@
           <ion-option value="USDT">USDT</ion-option>
       </ion-select>
     </ion-item>
-    <hr>
+    
     <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
     <ion-grid *ngIf="ticker">
       <ion-row>

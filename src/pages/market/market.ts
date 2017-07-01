@@ -19,8 +19,6 @@ export class MarketPage implements OnInit {
   currenciesToDisplay: Array<String>;
   //Inject App to get the rootNav from it and not from the NavController
   constructor(private nav: NavController, private auth: AuthService, private app: App, private poloniexService: PoloniexService, private filterService: FilterService) {
-    this.market_id = 'BTC';
-    this.searchTerm = "";
     /**
      * this.currencies = ['AMP','ARDR','BBR','BCN','BCY','BELA','BITS',
                       'BLK','BTC','BTCD','BTM','BTS','C2','CLAM','CURE','DASH','DCR','DGB','DOGE',
@@ -32,17 +30,16 @@ export class MarketPage implements OnInit {
      */
   }
   ngOnInit(): void {
+    this.market_id = 'BTC';
+    this.searchTerm = "";
     this.LoadCurrencies();
-    this.LoadMarket();
-    /*this.market_interval_id = setInterval(() => {
-       this.LoadMarket(); 
-       }, 2000);*/
   }
   LoadCurrencies() {
     this.poloniexService.returnCurrencies().subscribe(data => {
       if (data.success) {
         this.currencies = Object.keys(data.result);
         this.currenciesToDisplay = Object.keys(data.result);
+        this.LoadMarket();
       }
     });
   }
@@ -70,7 +67,7 @@ export class MarketPage implements OnInit {
             }
           }
         }
-        //console.log(data);
+        console.log(data);
         this.ticker = data;
       });
     }

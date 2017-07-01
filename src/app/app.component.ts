@@ -15,7 +15,7 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private storage:Storage) {
     platform.ready().then(() => {
       this.storage.get('pin').then((pin) => {
-         console.log('pin : ', pin);
+         console.log('load pin : ', pin);
          if(pin == null)
             this.rootPage = TabsPage;
          else
