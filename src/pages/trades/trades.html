@@ -32,10 +32,10 @@
                 <ion-input type="password"  [(ngModel)]="secretKey"></ion-input>
               </ion-item>
           </ion-list>
-          <button ion-button color="dark" block (click)='saveKeys()'>Save</button>
+          <button ion-button color="primary" block (click)='saveKeys()'>Save</button>
     </ion-card-content>
  </ion-card>
- <button ion-button color="dark" block  (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
+ <button ion-button color="primary" block  (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
  <ion-card >
    <ion-card-header> My Balance
     </ion-card-header>

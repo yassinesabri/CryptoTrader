@@ -1,7 +1,7 @@
 page-login {
  
-  .login-content {
-    background: #56CA96;
+    .login-content {
+    background: #0c999c;
  
     .logo-row {
       padding-top: 50px;
@@ -9,9 +9,9 @@ page-login {
     }
  
     .login-box {
-      background: #399F8B;
+      background: #0c999c;
       padding: 20px 20px 0px 20px;
-      margin-top: 30px;
+      margin-top: 0px;
     }
  
     ion-row {
@@ -34,21 +34,12 @@ page-login {
        padding-bottom: 20px;
      }
  
-     .item-inner {
-       border-bottom-color: #ffffff !important;
-       box-shadow: none !important;
-     }
- 
      .submit-btn {
-       background: #51CFB1;
+       background: #000000;
        border-radius: 30px !important;
-       border: 1px solid #ffffff;
+       border: 0px solid #ffffff;
      }
  
-     .register-btn {
-       color: #ffffff;
-       font-size: 0.8em;
-     }
   }
  
 }

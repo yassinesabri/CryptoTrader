@@ -75,7 +75,7 @@ export class CurrencyInfoPage {
         else if (this.poloniexService.apiKey == null || this.poloniexService.secretKey == null) {
             let alert = this.alertCtrl.create({
                 title: 'Buy Failed',
-                subTitle: "No ApiKey found, please save yours in the settings section",
+                subTitle: "No ApiKey found, please save yours in the Trades section",
                 buttons: ['OK']
             });
             alert.present(prompt);
