@@ -11,7 +11,7 @@ export class PoloniexService{
   constructor(private http:Http,private storage:Storage){
     console.log('service is ready...');
     this.grabKeys();
-    this.backEndUrl = "http://localhost:3010"; // WebServer URL : 192.241.247.142
+    this.backEndUrl = "http://192.241.247.142:3010"; // WebServer URL : 192.241.247.142
   }//http://localhost:3010/ticker
   grabKeys(){
     this.storage.ready().then(() => {
