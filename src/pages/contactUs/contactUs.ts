@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController ,NavController} from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 import { Http, Request, RequestMethod, Headers } from "@angular/http";
 @Component({
     selector: 'page-contactUs',
@@ -12,13 +12,13 @@ export class ContactUsPage {
     subject: string;
     message: string;
     sender: string;
-    constructor(http: Http, private alertCtrl: AlertController ,private navCtrl : NavController) {
+    constructor(http: Http, private alertCtrl: AlertController, private navCtrl: NavController) {
         this.http = http;
         this.mailgunUrl = "sandboxfef8e86829ce4cd3a203a8d55264fb3f.mailgun.org";
         this.mailgunApiKey = window.btoa("api:key-d8c97f3a720fb96f116c133dc6064a9c");
     }
     send() {
-        if (this.sender.match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$") && this.subject.length > 3 && this.message.length > 25){
+        if (this.sender.match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$") && this.subject.length > 3 && this.message.length > 25) {
             var requestHeaders = new Headers();
             requestHeaders.append("Authorization", "Basic " + this.mailgunApiKey);
             requestHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -48,11 +48,11 @@ export class ContactUsPage {
                 });
         } else {
             let alert = this.alertCtrl.create({
-                        title: 'Invalid Inputs',
-                        subTitle: "Please give a valid email,subject and a message that contains at least 25 character.",
-                        buttons: ['OK']
-                    });
-                    alert.present(prompt);
+                title: 'Invalid Inputs',
+                subTitle: "Please give a valid email,subject and a message that contains at least 25 character.",
+                buttons: ['OK']
+            });
+            alert.present(prompt);
         }
     }
 

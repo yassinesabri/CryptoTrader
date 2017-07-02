@@ -4,20 +4,20 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import {LoginPage} from '../pages/login/login';
-import {MarketPage} from '../pages/market/market';
-import {TradesPage} from '../pages/trades/trades';
-import {DepositsPage} from '../pages/deposit/deposits';
-import {AboutPage} from '../pages/about/about';
-import {SecurityPage} from '../pages/security/security';
-import {ContactUsPage} from '../pages/contactUs/contactUs';
-import {SettingsPage} from '../pages/settings/settings';
+import { LoginPage } from '../pages/login/login';
+import { MarketPage } from '../pages/market/market';
+import { TradesPage } from '../pages/trades/trades';
+import { DepositsPage } from '../pages/deposit/deposits';
+import { AboutPage } from '../pages/about/about';
+import { SecurityPage } from '../pages/security/security';
+import { ContactUsPage } from '../pages/contactUs/contactUs';
+import { SettingsPage } from '../pages/settings/settings';
 import { MyApp } from './app.component';
-import { TabsPage } from '../pages/tabs/tabs'; 
-import {CurrencyInfoPage} from '../pages/currencyInfo/currencyInfo';
-import {PoloniexService} from './../providers/poloniexService';
-import {FilterService} from './../providers/filterService';
-import {HttpModule} from '@angular/http';
+import { TabsPage } from '../pages/tabs/tabs';
+import { CurrencyInfoPage } from '../pages/currencyInfo/currencyInfo';
+import { PoloniexService } from './../providers/poloniexService';
+import { FilterService } from './../providers/filterService';
+import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ChartModule } from 'angular2-highcharts';
 //import * as highchart from 'highcharts';
@@ -60,10 +60,10 @@ import * as highstocks from 'highcharts/highstock';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     PoloniexService,
     FilterService
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -12,47 +12,47 @@ import { FilterService } from '../../providers/filterService';
   templateUrl: 'trades.html'
 })
 export class TradesPage implements OnInit, OnDestroy {
-  apiKey:string;
-  secretKey:string;
+  apiKey: string;
+  secretKey: string;
   coin: string;
   currencies: Array<string>;
-  balance:any;
-  isApiKey:boolean;
-  action:any;
-  deposit:Array<string>;
-  end:number;
-  start:number;
-  currenciesTodisplay:Array<string>;
+  balance: any;
+  isApiKey: boolean;
+  action: any;
+  deposit: Array<string>;
+  end: number;
+  start: number;
+  currenciesTodisplay: Array<string>;
   searchTerm: string;
-  Myhistory:Array<string>;
-  constructor(private nav: NavController, private app: App, private poloniexService: PoloniexService,public storage:Storage,public alertCtrl: AlertController, private filterService: FilterService) {
-     
-     
-     this.isApiKey=true;
-     this.apiKey=this.poloniexService.apiKey;
-     this.secretKey=this.poloniexService.secretKey;
+  Myhistory: Array<string>;
+  constructor(private nav: NavController, private app: App, private poloniexService: PoloniexService, public storage: Storage, public alertCtrl: AlertController, private filterService: FilterService) {
 
-     
-     if(this.apiKey==null || this.secretKey==null){
-       this.isApiKey=false;
-     }
+
+    this.isApiKey = true;
+    this.apiKey = this.poloniexService.apiKey;
+    this.secretKey = this.poloniexService.secretKey;
+
+
+    if (this.apiKey == null || this.secretKey == null) {
+      this.isApiKey = false;
+    }
   }
   ngOnInit(): void {
-    this.searchTerm="";
+    this.searchTerm = "";
     this.LoadCurrencies();
     this.LoadBalances();
     this.ShowMyTradeHistory();
   }
- 
+
 
   ngOnDestroy() {
 
   }
-  saveKeys(){
-    this.storage.set('apiKey',this.apiKey);
-    this.storage.set('secretKey',this.secretKey);
-    console.log('done ',this.apiKey,' ',this.secretKey);
-    this.isApiKey=true;
+  saveKeys() {
+    this.storage.set('apiKey', this.apiKey);
+    this.storage.set('secretKey', this.secretKey);
+    console.log('done ', this.apiKey, ' ', this.secretKey);
+    this.isApiKey = true;
     this.LoadBalances();
   }
   doRefresh(refresher) {
@@ -79,7 +79,7 @@ export class TradesPage implements OnInit, OnDestroy {
 }*/
   LoadBalances() {
     console.log('LoadBalence called');
-    console.log('key : '+this.poloniexService.apiKey);
+    console.log('key : ' + this.poloniexService.apiKey);
     this.poloniexService.returnBalances(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
       this.balance = data.result;
     });
@@ -88,36 +88,36 @@ export class TradesPage implements OnInit, OnDestroy {
   LoadCurrencies() {
     this.poloniexService.returnCurrencies().subscribe(data => {
       if (data.success) {
-       this.currencies = Object.keys(data.result);
-       this.currenciesTodisplay= Object.keys(data.result);
+        this.currencies = Object.keys(data.result);
+        this.currenciesTodisplay = Object.keys(data.result);
       }
     });
   }
-  deleteKeys():void{
-    this.apiKey=null;
-    this.secretKey=null;
-    this.storage.set('apiKey',null);
-    this.storage.set('secretKey',null);
-    this.isApiKey=!this.isApiKey;
+  deleteKeys(): void {
+    this.apiKey = null;
+    this.secretKey = null;
+    this.storage.set('apiKey', null);
+    this.storage.set('secretKey', null);
+    this.isApiKey = !this.isApiKey;
   }
-  showDeposit(currencyId:string,coinBalannce:any):void{
-    this.nav.push(DepositsPage,{
-      "currencyId" : currencyId,
+  showDeposit(currencyId: string, coinBalannce: any): void {
+    this.nav.push(DepositsPage, {
+      "currencyId": currencyId,
       "balance": coinBalannce
     });
   }
-  
-  ShowMyTradeHistory(){
-    this.end =Math.round(new Date().getTime() / 1000);
-    this.start=this.end - 600;
-    this.poloniexService.returnMyTradeHistory(this.poloniexService.apiKey, this.poloniexService.secretKey, "BTC_BCN",this.start, this.end).subscribe(data => {
-                this.Myhistory=data.result;
-                console.log(data.result+" keysssssssssss");
-  });
+
+  ShowMyTradeHistory() {
+    this.end = Math.round(new Date().getTime() / 1000);
+    this.start = this.end - 600;
+    this.poloniexService.returnMyTradeHistory(this.poloniexService.apiKey, this.poloniexService.secretKey, "BTC_BCN", this.start, this.end).subscribe(data => {
+      this.Myhistory = data.result;
+      console.log(data.result + " keysssssssssss");
+    });
   }
-  setFilteredItems():void{
-      this.currenciesTodisplay= this.filterService.filterCurrencies(this.currencies, this.searchTerm);
-      this.LoadBalances();
+  setFilteredItems(): void {
+    this.currenciesTodisplay = this.filterService.filterCurrencies(this.currencies, this.searchTerm);
+    this.LoadBalances();
   }
 
 }

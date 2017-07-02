@@ -56,11 +56,11 @@ export class MarketPage implements OnInit {
               let volume = parseFloat(data[this.market_id + '_' + this.currenciesToDisplay[i]].baseVolume).toFixed(3);
               let percentage = parseFloat(data[this.market_id + '_' + this.currenciesToDisplay[i]].percentChange).toFixed(3);
               data[this.market_id + '_' + this.currenciesToDisplay[i]].baseVolume = volume;
-              if(parseFloat(percentage) > 0){
-                data[this.market_id + '_' + this.currenciesToDisplay[i]].percentChange = '+'+percentage;
+              if (parseFloat(percentage) > 0) {
+                data[this.market_id + '_' + this.currenciesToDisplay[i]].percentChange = '+' + percentage;
                 data[this.market_id + '_' + this.currenciesToDisplay[i]].color = "positive";
               }
-              else{
+              else {
                 data[this.market_id + '_' + this.currenciesToDisplay[i]].percentChange = percentage;
                 data[this.market_id + '_' + this.currenciesToDisplay[i]].color = "negative";
               }

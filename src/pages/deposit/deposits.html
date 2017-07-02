@@ -6,113 +6,113 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-<ion-card>
-<ion-list radio-group [(ngModel)]="action" (ionChange)="changeAction()">
-  <ion-list-header>
-    Action
-  </ion-list-header>
-  <ion-item >
-    <ion-label>Deposit</ion-label>
-    <ion-radio checked="true" value="Deposit"></ion-radio>
-  </ion-item>
-  <ion-card *ngIf="showDep">
-  <ion-card-header>
-    Your {{currencyId}} Deposit Address :
-  </ion-card-header>
-  <ion-card-content>
-      {{addressResp}}
-  </ion-card-content>
-</ion-card>
-  <ion-item>
-    <ion-label>Withdraw</ion-label>
-    <ion-radio value="withdraw" ></ion-radio>
-  </ion-item>
-  <ion-card *ngIf="showWith">
-  <ion-card-header>
-    You have 0.00000000 {{currencyId}} available for withdrawal.
-  </ion-card-header>
-  <ion-card-content>
-      <ion-list>
+  <ion-card>
+    <ion-list radio-group [(ngModel)]="action" (ionChange)="changeAction()">
+      <ion-list-header>
+        Action
+      </ion-list-header>
       <ion-item>
-        <ion-label>Address : </ion-label>
-        <ion-input type="text" [(ngModel)]="withdrawAddress"></ion-input>
+        <ion-label>Deposit</ion-label>
+        <ion-radio checked="true" value="Deposit"></ion-radio>
       </ion-item>
+      <ion-card *ngIf="showDep">
+        <ion-card-header>
+          Your {{currencyId}} Deposit Address :
+        </ion-card-header>
+        <ion-card-content>
+          {{addressResp}}
+        </ion-card-content>
+      </ion-card>
       <ion-item>
-        <ion-label>Amount : </ion-label>
-        <ion-input type="text" [(ngModel)]="withdrawAmount"></ion-input>
+        <ion-label>Withdraw</ion-label>
+        <ion-radio value="withdraw"></ion-radio>
       </ion-item>
-      </ion-list>
-      <button ion-button color="primary" block (click)="withdraw()">Withdraw</button>
-  </ion-card-content>
-</ion-card>
-</ion-list>
-</ion-card>
-<ion-card>
+      <ion-card *ngIf="showWith">
+        <ion-card-header>
+          You have 0.00000000 {{currencyId}} available for withdrawal.
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Address : </ion-label>
+              <ion-input type="text" [(ngModel)]="withdrawAddress"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Amount : </ion-label>
+              <ion-input type="text" [(ngModel)]="withdrawAmount"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button ion-button color="primary" block (click)="withdraw()">Withdraw</button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+  <ion-card>
     <ion-card-header>
-        My DEPOSIT HISTORY
+      My DEPOSIT HISTORY
     </ion-card-header>
     <ion-card-content>
-    <ion-grid >
-      <ion-row>
-        <ion-col width-40>Stauts</ion-col>
-        <ion-col width-35>Coin</ion-col>
-        <ion-col width-25>Amount</ion-col>
-      </ion-row>
-      <div *ngIf="depositHistory?.length < 1">
-      You have not made any Deposit. Once you do, they will appear here.
-      </div>
-      <ion-row *ngFor="let dH of depositHistory">
-        <ion-col width-40 >{{dH.status}}</ion-col>
-        <ion-col width-35 >{{dH.coin}}</ion-col>
-        <ion-col width-25 >{{dH.amount}}</ion-col>
-      </ion-row>
-    </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-40>Stauts</ion-col>
+          <ion-col width-35>Coin</ion-col>
+          <ion-col width-25>Amount</ion-col>
+        </ion-row>
+        <div *ngIf="depositHistory?.length < 1">
+          You have not made any Deposit. Once you do, they will appear here.
+        </div>
+        <ion-row *ngFor="let dH of depositHistory">
+          <ion-col width-40>{{dH.status}}</ion-col>
+          <ion-col width-35>{{dH.coin}}</ion-col>
+          <ion-col width-25>{{dH.amount}}</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
-</ion-card>
-<ion-card>
+  </ion-card>
+  <ion-card>
     <ion-card-header>
-        My WITHDRAWAL HISTORY
+      My WITHDRAWAL HISTORY
     </ion-card-header>
     <ion-card-content>
-    <ion-grid >
-      <ion-row>
-        <ion-col width-25>Stauts</ion-col>
-        <ion-col width-35>Coin</ion-col>
-        <ion-col width-20>Amount</ion-col>
-      </ion-row>
-      <div *ngIf="withdrawHistory?.length < 1">
-      You have not made any withdrawals. Once you do, they will appear here.
-     </div>
-      <ion-row *ngFor="let wH of withdrawHistory" >
-        <ion-col width-25 >{{wH.status}}</ion-col>
-        <ion-col width-35 >{{wH.coin}}</ion-col>
-        <ion-col width-20 >{{wH.amount}}</ion-col>
-      </ion-row>
-    </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-25>Stauts</ion-col>
+          <ion-col width-35>Coin</ion-col>
+          <ion-col width-20>Amount</ion-col>
+        </ion-row>
+        <div *ngIf="withdrawHistory?.length < 1">
+          You have not made any withdrawals. Once you do, they will appear here.
+        </div>
+        <ion-row *ngFor="let wH of withdrawHistory">
+          <ion-col width-25>{{wH.status}}</ion-col>
+          <ion-col width-35>{{wH.coin}}</ion-col>
+          <ion-col width-20>{{wH.amount}}</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
-</ion-card>
-<ion-card>
+  </ion-card>
+  <ion-card>
     <ion-card-header>
-        MY OPEN ORDERS
+      MY OPEN ORDERS
     </ion-card-header>
     <ion-card-content>
-    <ion-grid >
-      <ion-row>
-        <ion-col width-40>Order Number</ion-col>
-        <ion-col width-35>Type</ion-col>
-        <ion-col width-25>Rate</ion-col>
-        <ion-col width-25>Amount</ion-col>
-        <ion-col width-25>Total</ion-col>
-      </ion-row>
-      <div >
-    You have no open orders.
-    </div>
-      <ion-row *ngFor="" >
-        <ion-col width-40 ></ion-col>
-        <ion-col width-35 ></ion-col>
-        <ion-col width-25 ></ion-col>
-      </ion-row>
-    </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-40>Order Number</ion-col>
+          <ion-col width-35>Type</ion-col>
+          <ion-col width-25>Rate</ion-col>
+          <ion-col width-25>Amount</ion-col>
+          <ion-col width-25>Total</ion-col>
+        </ion-row>
+        <div>
+          You have no open orders.
+        </div>
+        <ion-row *ngFor="">
+          <ion-col width-40></ion-col>
+          <ion-col width-35></ion-col>
+          <ion-col width-25></ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
-</ion-card>
+  </ion-card>
 </ion-content>

@@ -81,7 +81,7 @@ export class CurrencyInfoPage {
             alert.present(prompt);
         } else {
             let loading = this.loadingCtrl.create({
-                spinner : 'dots',
+                spinner: 'dots',
                 content: 'Please wait...'
             });
 
@@ -110,7 +110,7 @@ export class CurrencyInfoPage {
 
     }
     submitSell() {
-    
+
         if (isNaN(this.sellAmount) || this.sellAmount <= 0) {
             let alert = this.alertCtrl.create({
                 title: 'Sell Failed',
@@ -128,7 +128,7 @@ export class CurrencyInfoPage {
             alert.present(prompt);
         } else {
             let loading = this.loadingCtrl.create({
-                spinner : 'dots',
+                spinner: 'dots',
                 content: 'Please wait...'
             });
 
@@ -156,7 +156,7 @@ export class CurrencyInfoPage {
         }
 
     }
-    
+
     loadChartData() {
         let now = Math.round(new Date().getTime() / 1000);
         let before = now - Number(this.zoomId);

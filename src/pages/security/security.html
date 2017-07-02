@@ -8,46 +8,46 @@
 <ion-content>
   <ion-card *ngIf="!showPinConfig">
     <ion-card-header>
-        ACTIVATE PIN 
+      ACTIVATE PIN
     </ion-card-header>
     <ion-card-content>
-          <ion-list>
-              <ion-item>
-                <ion-label floating>Your Pin</ion-label>
-                <ion-input type="password"  [(ngModel)]="newPin"></ion-input>
-              </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Your Pin</ion-label>
+          <ion-input type="password" [(ngModel)]="newPin"></ion-input>
+        </ion-item>
 
-              <ion-item>
-                <ion-label floating>Confirm</ion-label>
-                <ion-input type="password"  [(ngModel)]="confirmNewPin"></ion-input>
-              </ion-item>
-          </ion-list>
-          <button ion-button color="primary" block (click)='savePin()'>Save</button>
+        <ion-item>
+          <ion-label floating>Confirm</ion-label>
+          <ion-input type="password" [(ngModel)]="confirmNewPin"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button color="primary" block (click)='savePin()'>Save</button>
     </ion-card-content>
- </ion-card>
- <ion-card *ngIf="showPinConfig">
+  </ion-card>
+  <ion-card *ngIf="showPinConfig">
     <ion-card-header>
-        EDIT PIN 
+      EDIT PIN
     </ion-card-header>
     <ion-card-content>
       <button ion-button color="danger" block (click)='deletePin()'>Desactivate Pin</button>
-          <ion-list>
-              <ion-item>
-                <ion-label floating>Current Pin</ion-label>
-                <ion-input type="password"  [(ngModel)]="current_pin"></ion-input>
-              </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Current Pin</ion-label>
+          <ion-input type="password" [(ngModel)]="current_pin"></ion-input>
+        </ion-item>
 
-              <ion-item>
-                <ion-label floating>Your Pin</ion-label>
-                <ion-input type="password"  [(ngModel)]="newPin"></ion-input>
-              </ion-item>
+        <ion-item>
+          <ion-label floating>Your Pin</ion-label>
+          <ion-input type="password" [(ngModel)]="newPin"></ion-input>
+        </ion-item>
 
-              <ion-item>
-                <ion-label floating>Confirm</ion-label>
-                <ion-input type="password"  [(ngModel)]="confirmNewPin"></ion-input>
-              </ion-item>
-          </ion-list>
-          <button ion-button color="primary" block (click)='savePin()'>Save</button>
+        <ion-item>
+          <ion-label floating>Confirm</ion-label>
+          <ion-input type="password" [(ngModel)]="confirmNewPin"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button color="primary" block (click)='savePin()'>Save</button>
     </ion-card-content>
- </ion-card>
+  </ion-card>
 </ion-content>

@@ -1,9 +1,9 @@
 <ion-content class="login-content" padding>
-  
+
   <ion-row class="logo-row">
     <ion-col></ion-col>
     <ion-col width-67>
-      <img src="assets/login.png"/>
+      <img src="assets/login.png" />
       <!-- <img src="http://placehold.it/500x500"/> -->
     </ion-col>
     <ion-col></ion-col>
@@ -14,21 +14,21 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-            
+
             <ion-item>
               <ion-input type="password" placeholder="PIN" name="pin" [(ngModel)]="pin" required></ion-input>
             </ion-item>
-            
+
           </ion-list>
         </ion-col>
       </ion-row>
-      
+
       <ion-row>
         <ion-col class="signup-col">
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
         </ion-col>
       </ion-row>
-      
+
     </form>
   </div>
 </ion-content>
