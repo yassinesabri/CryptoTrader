@@ -41,14 +41,55 @@ export class SecurityPage {
     console.log('settings called');
   }
   showAlert():void{
-
+    console.log("there it is the show "+this.showPinConfig+" and tha ctual pin "+this.actual_pin);
     if((!this.showPinConfig && this.actual_pin==null)){
       this.showPinConfig=true;
+      this.newPin=null;
+      this.confirmNewPin=null;
+    }else if(this.showPinConfig && this.actual_pin!=null){
+      
+console.log('remove Pin');
+      let prompt = this.alertCtrl.create({
+      title: 'Pin',
+      message: "Enter your current Pin",
+      inputs: [
+        {
+          name: 'pin',
+          placeholder: 'current Pin'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked '+data.pin);
+            if(data.pin===this.actual_pin){
+              this.storage.ready().then(() => {
+              this.storage.remove('pin');
+              this.newPin=null;
+              this.confirmNewPin=null;
+              this.showPinConfig=false;
+            });
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
     }else{
-      console.log('remove Pin');
+      
     this.storage.ready().then(() => {
        this.storage.remove('pin');
+       console.log('remove Pin !!!!'+this.actual_pin);
        this.showPinConfig=false;
+       this.newPin=null;
+       this.confirmNewPin=null;
      });
     }
   }
@@ -63,6 +104,8 @@ export class SecurityPage {
     }
     else if(this.newPin===this.confirmNewPin){
       this.storage.set('pin',this.newPin);
+      this.newPin=null;
+      this.confirmNewPin=null;
     console.log('done ',this.newPin);
     //this.navCtrl.setRoot(this.navCtrl.getActive().component);
     }else{
