@@ -15,6 +15,7 @@ export class DepositsPage implements OnInit,OnDestroy {
     start:number;
     end:number;
     address:string;
+    addressResp:string;
     action: string;
     showDep: boolean;
     showWith: boolean;
@@ -30,12 +31,14 @@ export class DepositsPage implements OnInit,OnDestroy {
     constructor(private navParams: NavParams, public poloniexService: PoloniexService,public storage:Storage, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
         this.currencyId = navParams.get("currencyId");
         this.balanceId = navParams.get("balance");
-        this.address = navParams.get("depositAddress");
+       // this.address = navParams.get("depositAddress");
     }
     changeAction(): void {
         if (this.action == 'Deposit') {
             this.showDep = true;
             this.showWith = false;
+            this.generatAdresse();
+
             console.log('deposit called');
             //console.log('key : '+this.poloniexService.apiKey);
             
@@ -53,14 +56,33 @@ export class DepositsPage implements OnInit,OnDestroy {
         this.poloniexService.returnDepositsWithdrawals(this.poloniexService.apiKey, this.poloniexService.secretKey, this.start,this.end).subscribe(data => {
                 
                 this.depositWithdraw=data.result;
+                if(typeof this.depositWithdraw==="undefined"){
+                    this.depositHistory="";
+                    this.withdrawHistory="";
+                }else{
                 this.depositHistory=this.depositWithdraw["deposits"];
                // console.log('the withdraws and deposits',this.depositHistory);
                 //console.log('the withdraws and deposits',this.depositHistory.currency);
                 //console.log('the withdraws and deposits',this.depositHistory["currency"]);
                 
                 this.withdrawHistory=this.depositWithdraw["withdrawals"];
+                }
             });
 
+    }
+    generatAdresse():void{
+        this.poloniexService.generateNewAddress(this.poloniexService.apiKey, this.poloniexService.secretKey,this.currencyId).subscribe(data => {                
+                this.address=data.result;
+               // this.currencies=Object.keys(this.deposit);
+                //console.log("!!!!!!!!!!!!!!!!!!h"+this.address[0]);
+                if(typeof this.address==="undefined"){
+                console.log("!!!!!!!!!! keys null");
+            }else{console.log(" keys "+Object.keys(this.address)+"   ADRESS  "+this.address['address']+" RESPONSE  "+this.address['response']+" SUCCESS  "+this.address['success']);
+                    this.addressResp=this.address['response'];
+    }
+                //this.address=this.deposit['response'];
+                
+            });
     }
     ngOnInit(): void {
         this.loadHistory();
