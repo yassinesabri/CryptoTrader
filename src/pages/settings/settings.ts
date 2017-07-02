@@ -16,9 +16,9 @@ import { ContactUsPage } from '../contactUs/contactUs';
 export class SettingsPage {
   
   items = [
-    'security',
-    'about',
-    'contact us'
+    'Security',
+    'About',
+    'Contact us'
   ];
 
   constructor(private nav: NavController){
@@ -30,11 +30,11 @@ export class SettingsPage {
   
    itemSelected(item: string) {
     console.log("Selected Item", item);
-    if(item=="about"){
+    if(item=="About"){
       this.nav.push(AboutPage);
-    }else if(item=="security"){
+    }else if(item=="Security"){
       this.nav.push(SecurityPage);
-    }else if(item=="contact us"){
+    }else if(item=="Contact us"){
       this.nav.push(ContactUsPage);
     }
 

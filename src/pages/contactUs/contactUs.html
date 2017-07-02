@@ -6,4 +6,22 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <ion-list>
+        <ion-item>
+            <ion-label floating>From</ion-label>
+            <ion-input type="text" [(ngModel)]="sender"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Subject</ion-label>
+            <ion-input type="text" [(ngModel)]="subject"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Message</ion-label>
+            <ion-textarea [(ngModel)]="message" rows="10"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <button ion-button color="primary" block (click)="send()" >SEND</button>
+        </ion-item>
+    </ion-list>
+        
 </ion-content>
