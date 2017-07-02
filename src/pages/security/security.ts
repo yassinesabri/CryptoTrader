@@ -13,7 +13,6 @@ export class SecurityPage {
   actual_pin:number;
   newPin:number;
   confirmNewPin:number;
-  textActivatePin:string;
   current_pin:number;
 
   constructor(private nav: NavController,private storage:Storage, private poloniexService: PoloniexService, public alertCtrl: AlertController,private navCtrl: NavController){
@@ -25,12 +24,10 @@ export class SecurityPage {
          this.actual_pin = api;
          if(this.actual_pin==null){
      // console.log('I m HEREEEEE !!!!!!');
-     this.textActivatePin="Activate Pin";
      this.showPinConfig=false;
     }
     else if(this.actual_pin!=null){
        //console.log('I m HEREEEEE');
-      this.textActivatePin="Edit Pin";
       this.showPinConfig=true;
     }
        })
