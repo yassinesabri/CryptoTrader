@@ -40,13 +40,15 @@
    <ion-card-header> My Balance
     </ion-card-header>
     <ion-grid *ngIf="balance&&isApiKey">
+      <hr>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
       <ion-row>
         <ion-col width-25>Coin</ion-col>
         <ion-col width-35>Total Balance</ion-col>
         <ion-col width-20>BTC Value</ion-col>
         <ion-col width-20 id="Action">Action</ion-col>
       </ion-row>
-      <ion-row *ngFor="let currency of currenciesBalance"  >
+      <ion-row *ngFor="let currency of currencies" >
         <ion-col width-25 >{{currency}}</ion-col>
         <ion-col width-35 >{{balance[currency]}}</ion-col>
         <ion-col width-20 >{{balance[currency]}}</ion-col>
@@ -81,4 +83,3 @@
     </ion-grid>
 </ion-card>
 </ion-content>
-

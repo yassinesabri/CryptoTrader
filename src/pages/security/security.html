@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      SECURITY
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-item>
+        <ion-toggle checked={{showPinConfig}} (click)="showAlert()"></ion-toggle>
+        <ion-label>
+          {{textActivatePin}}
+        </ion-label>
+      </ion-item>
+    <ion-card *ngIf="showPinConfig">
+      <ion-card-header>
+          Your Pin
+      </ion-card-header>
+      <ion-card-content>
+            <ion-list>
+                <ion-item >
+                  <ion-label floating>Current Pin (Keep it empty the first time !)</ion-label>
+                  <ion-input type="password"  [(ngModel)]="current_pin"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label floating>Pin</ion-label>
+                  <ion-input type="password"  [(ngModel)]="newPin"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label floating>Confirm </ion-label>
+                  <ion-input type="password"  [(ngModel)]="confirmNewPin"></ion-input>
+                </ion-item>
+            </ion-list>
+            <button ion-button color="primary" block (click)='savePin()'>Save</button>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

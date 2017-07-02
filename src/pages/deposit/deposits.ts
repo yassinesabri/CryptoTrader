@@ -54,9 +54,9 @@ export class DepositsPage implements OnInit,OnDestroy {
                 
                 this.depositWithdraw=data.result;
                 this.depositHistory=this.depositWithdraw["deposits"];
-                console.log('the withdraws and deposits',this.depositHistory);
-                console.log('the withdraws and deposits',this.depositHistory.currency);
-                console.log('the withdraws and deposits',this.depositHistory["currency"]);
+               // console.log('the withdraws and deposits',this.depositHistory);
+                //console.log('the withdraws and deposits',this.depositHistory.currency);
+                //console.log('the withdraws and deposits',this.depositHistory["currency"]);
                 
                 this.withdrawHistory=this.depositWithdraw["withdrawals"];
             });
