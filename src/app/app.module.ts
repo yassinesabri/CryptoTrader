@@ -8,6 +8,9 @@ import {LoginPage} from '../pages/login/login';
 import {MarketPage} from '../pages/market/market';
 import {TradesPage} from '../pages/trades/trades';
 import {DepositsPage} from '../pages/deposit/deposits';
+import {AboutPage} from '../pages/about/about';
+import {SecurityPage} from '../pages/security/security';
+import {ContactUsPage} from '../pages/contactUs/contactUs';
 import {SettingsPage} from '../pages/settings/settings';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs'; 
@@ -28,7 +31,10 @@ import * as highstocks from 'highcharts/highstock';
     DepositsPage,
     SettingsPage,
     TabsPage,
-    CurrencyInfoPage
+    CurrencyInfoPage,
+    SecurityPage,
+    AboutPage,
+    ContactUsPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,10 @@ import * as highstocks from 'highcharts/highstock';
     DepositsPage,
     SettingsPage,
     TabsPage,
-    CurrencyInfoPage
+    CurrencyInfoPage,
+    SecurityPage,
+    AboutPage,
+    ContactUsPage
   ],
   providers: [
     StatusBar,

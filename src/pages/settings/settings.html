@@ -8,12 +8,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>KEYS</ion-list-header>
-    <ion-item>
-      <button ion-button color="secondary" block (click)="generate()">Generate Keys</button>
-    </ion-item>
-    <ion-item>
-      <button ion-button color="danger" block (click)="remove()">Remove Keys</button>
-    </ion-item>
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      {{ item }}
+    </button>
   </ion-list>
 </ion-content>
