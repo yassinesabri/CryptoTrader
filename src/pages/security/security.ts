@@ -72,6 +72,7 @@ console.log('remove Pin');
             if(data.pin===this.actual_pin){
               this.storage.ready().then(() => {
               this.storage.remove('pin');
+              this.actual_pin=null;
               this.newPin=null;
               this.confirmNewPin=null;
               this.showPinConfig=false;
@@ -104,6 +105,8 @@ console.log('remove Pin');
     }
     else if(this.newPin===this.confirmNewPin){
       this.storage.set('pin',this.newPin);
+      this.actual_pin=this.newPin;
+      this.showPinConfig=true;
       this.newPin=null;
       this.confirmNewPin=null;
     console.log('done ',this.newPin);
