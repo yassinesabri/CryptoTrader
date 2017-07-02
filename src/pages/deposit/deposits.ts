@@ -19,7 +19,7 @@ export class DepositsPage implements OnInit,OnDestroy {
     action: string;
     showDep: boolean;
     showWith: boolean;
-    deposit: any;
+    deposit: Array<string>;
     withdrawAddress: string;
     withdrawAmount: number;
     currencyId:string;
@@ -37,7 +37,9 @@ export class DepositsPage implements OnInit,OnDestroy {
         if (this.action == 'Deposit') {
             this.showDep = true;
             this.showWith = false;
-            this.generatAdresse();
+            this.depositAdress();
+           // console.log(" depooooooosit "+ typeof this.deposit[this.currencyId]);
+            
 
             console.log('deposit called');
             //console.log('key : '+this.poloniexService.apiKey);
@@ -50,6 +52,21 @@ export class DepositsPage implements OnInit,OnDestroy {
         }
         console.log(this.action);
     }
+      depositAdress():void{
+    this.poloniexService.returnDepositAddresses(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
+                this.deposit=data.result; 
+               // this.currencies=Object.keys(this.deposit);
+                console.log("!!!!!!!!!!!!!!!!!!h"+Object.keys(this.deposit));
+                if(typeof this.deposit[this.currencyId] === 'undefined' || this.deposit[this.currencyId] === null){
+                this.generatAdresse();
+            }
+            else{
+                //console.log("areo "+this.deposit[this.currencyId]);
+                this.addressResp=this.deposit[this.currencyId];
+            }
+                //this.address=this.deposit['response'];
+            });
+  }
     loadHistory():void{
          this.end = Math.round(new Date().getTime() / 1000);
          this.start=1000;
@@ -78,7 +95,12 @@ export class DepositsPage implements OnInit,OnDestroy {
                 if(typeof this.address==="undefined"){
                 console.log("!!!!!!!!!! keys null");
             }else{console.log(" keys "+Object.keys(this.address)+"   ADRESS  "+this.address['address']+" RESPONSE  "+this.address['response']+" SUCCESS  "+this.address['success']);
-                    this.addressResp=this.address['response'];
+                    if(this.address['response'] == 'Error generating deposit address.'){
+                        this.addressResp='Temporarily Disabled';
+                    }else{
+                        this.addressResp=this.address['response'];
+                    }
+                    
     }
                 //this.address=this.deposit['response'];
                 
