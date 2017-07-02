@@ -23,13 +23,11 @@ export class SecurityPage {
          console.log('pin : ', api);
          this.actual_pin = api;
          if(this.actual_pin==null){
-     // console.log('I m HEREEEEE !!!!!!');
-     this.showPinConfig=false;
-    }
-    else if(this.actual_pin!=null){
-       //console.log('I m HEREEEEE');
-      this.showPinConfig=true;
-    }
+           this.showPinConfig=false;
+         }
+        else if(this.actual_pin!=null){
+          this.showPinConfig=true;
+        }
        })
        
      });
@@ -73,6 +71,12 @@ console.log('remove Pin');
               this.newPin=null;
               this.confirmNewPin=null;
               this.showPinConfig=false;
+              let alert = this.alertCtrl.create({
+              title: 'SUCCESS !',
+          subTitle: 'The Pin was successfully edited ',
+          buttons: ['OK']
+          });
+      alert.present();
             });
             }
           }
@@ -91,30 +95,89 @@ console.log('remove Pin');
      });
     }
   }
+  deletePin():void{
+     let prompt = this.alertCtrl.create({
+      title: 'Pin',
+      message: "Enter your Actual Pin",
+      inputs: [
+        {
+          type:'password',
+          name: 'pin',
+          placeholder: 'Actual pin'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked');
+            if(data.pin===this.actual_pin){
+              this.storage.ready().then(() => {
+              this.storage.remove('pin');
+              this.actual_pin=null;
+              this.newPin=null;
+              this.confirmNewPin=null;
+              this.showPinConfig=false;
+              });
+            }else{
+              let alert = this.alertCtrl.create({
+              title: 'ERROR !',
+              subTitle: 'The actual  Pin is incorrect. Try Again!',
+              buttons: ['OK']
+              });
+            alert.present();
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+    /*        this.storage.ready().then(() => {
+              this.storage.remove('pin');
+              this.actual_pin=null;
+              this.newPin=null;
+              this.confirmNewPin=null;
+              this.showPinConfig=false;
+              console.log('remove Pin !!!!'+this.actual_pin);
+            });*/
+  }
   savePin():void{
-    if(this.current_pin!=this.actual_pin && this.actual_pin!=null){
-      let alert = this.alertCtrl.create({
-      title: 'ERROR !',
-      subTitle: 'Thre current Pin is wrong. Try again!',
-      buttons: ['OK']
-    });
-    alert.present();
-    }
-    else if(this.newPin===this.confirmNewPin){
-      this.storage.set('pin',this.newPin);
-      this.actual_pin=this.newPin;
-      this.showPinConfig=true;
-      this.newPin=null;
-      this.confirmNewPin=null;
-    console.log('done ',this.newPin);
-    //this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    if(this.newPin===this.confirmNewPin){
+      if(this.actual_pin==null || this.actual_pin==this.current_pin){
+        this.storage.set('pin',this.newPin);
+        this.actual_pin=this.newPin;
+        this.showPinConfig=true;
+        this.newPin=null;
+        this.confirmNewPin=null;
+        let alert = this.alertCtrl.create({
+        title: 'SUCCESS !',
+        subTitle: 'The Pin was successfully edited ',
+        buttons: ['OK']
+        });
+      alert.present();
+      console.log('done ',this.newPin);
+      //this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      }else{
+          let alert = this.alertCtrl.create({
+        title: 'ERROR !',
+        subTitle: 'The current pin is wrong. Try again!',
+        buttons: ['OK']
+      });
+      alert.present();
+      }
     }else{
-      let alert = this.alertCtrl.create({
-      title: 'ERROR !',
-      subTitle: 'These pins don\'t match. Try again!',
-      buttons: ['OK']
-    });
-    alert.present();
-    }
+        let alert = this.alertCtrl.create({
+        title: 'ERROR !',
+        subTitle: 'These pins don\'t match. Try again!',
+        buttons: ['OK']
+      });
+      alert.present();
+      }
   }
 }

@@ -35,7 +35,7 @@
           <button ion-button color="primary" block (click)='saveKeys()'>Save</button>
     </ion-card-content>
  </ion-card>
- <button ion-button color="primary" block  (click)='deleteKeys()' *ngIf="isApiKey">Use another account</button>
+ <button ion-button color="danger" block  (click)='deleteKeys()' *ngIf="isApiKey">Change Account</button>
  <ion-card >
    <ion-card-header> My Balance
     </ion-card-header>
@@ -68,17 +68,17 @@
         <ion-col width-20 >Amount</ion-col>
         <ion-col width-20 >Transaction Date</ion-col>
       </ion-row>
-      <ion-card-content *ngIf="isApiKey">
+      <ion-card-content *ngIf="isApiKey||Myhistory?.length < 1">
    <p>No trades</p>
 
     <p>You have not made any trades yet. Once you make some trades, they will appear here.</p>
 </ion-card-content>
-      <ion-row *ngFor="" >
-        <ion-col width-25 ></ion-col>
-        <ion-col width-35 ></ion-col>
-        <ion-col width-20 ></ion-col>
-        <ion-col width-20 ></ion-col>
-        <ion-col width-20 ></ion-col>
+      <ion-row *ngFor="let mH of Myhistory" >
+        <ion-col width-25 >mH.Id</ion-col>
+        <ion-col width-35 >mH.type</ion-col>
+        <ion-col width-20 >mH.price</ion-col>
+        <ion-col width-20 >mH.amount</ion-col>
+        <ion-col width-20 >mH.date</ion-col>
       </ion-row>
     </ion-grid>
 </ion-card>

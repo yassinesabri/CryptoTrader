@@ -98,7 +98,7 @@ app.get('/currencies',function(req,res,next){
     });
 });
 
-app.get('/withdraw&:apiKey&:secretKey&:currency&:amount:&address',function(req,res,next){
+app.get('/withdraw&:apiKey&:secretKey&:currency&:amount&:address',function(req,res,next){
     poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
     poloniexTrade.withdraw(req.params.currency,req.params.amount,req.params.address,function(err,withdraw){
         if(err){
@@ -107,12 +107,21 @@ app.get('/withdraw&:apiKey&:secretKey&:currency&:amount:&address',function(req,r
         res.status(200).send({"success" : true,"result" : withdraw});
     });
 });
-app.get('/MyTradeHistory&:apiKey&:secretKey&:currencyPair&:start:&end',function(req,res,next){
+app.get('/MyTradeHistory&:apiKey&:secretKey&:currencyPair&:start&:end',function(req,res,next){
     poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
     poloniexTrade.returnMyTradeHistory(req.params.currencyPair,req.params.start,req.params.end,function(err,TradeHistory){
         if(err){
             return res.json({"success" : false,"err" : err});
         }
         res.status(200).send({"success" : true,"result" : TradeHistory});
+    });
+});
+app.get('/OpenOrders&:apiKey&:secretKey&:currencyPair',function(req,res,next){
+    poloniexTrade = new Poloniex(req.params.apiKey,req.params.secretKey);
+    poloniexTrade.returnOpenOrders(req.params.currencyPair,function(err,OpenOrders){
+        if(err){
+            return res.json({"success" : false,"err" : err});
+        }
+        res.status(200).send({"success" : true,"result" : OpenOrders});
     });
 });

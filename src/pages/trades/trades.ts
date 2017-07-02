@@ -24,7 +24,7 @@ export class TradesPage implements OnInit, OnDestroy {
   start:number;
   currenciesTodisplay:Array<string>;
   searchTerm: string;
-  depositsRand=["BAfrVYYJNCiD3L2fjR3rMy1hBsXRkE8FnG",];
+  Myhistory:Array<string>;
   constructor(private nav: NavController, private app: App, private poloniexService: PoloniexService,public storage:Storage,public alertCtrl: AlertController, private filterService: FilterService) {
      
      
@@ -35,16 +35,13 @@ export class TradesPage implements OnInit, OnDestroy {
      
      if(this.apiKey==null || this.secretKey==null){
        this.isApiKey=false;
-     }else{
-       //this.LoadBalances();
      }
-   
   }
   ngOnInit(): void {
     this.searchTerm="";
     this.LoadCurrencies();
     this.LoadBalances();
-    //this.ShowMyTradeHistory();
+    this.ShowMyTradeHistory();
   }
  
 
@@ -60,6 +57,7 @@ export class TradesPage implements OnInit, OnDestroy {
   }
   doRefresh(refresher) {
     this.LoadBalances();
+    this.ShowMyTradeHistory();
     refresher.complete();
     console.log(this.apiKey);
     console.log(this.secretKey);
@@ -108,13 +106,15 @@ export class TradesPage implements OnInit, OnDestroy {
       "balance": coinBalannce
     });
   }
-  /*
+  
   ShowMyTradeHistory(){
     this.end =Math.round(new Date().getTime() / 1000);
     this.start=this.end - 600;
     this.poloniexService.returnMyTradeHistory(this.poloniexService.apiKey, this.poloniexService.secretKey, "BTC_BCN",this.start, this.end).subscribe(data => {
-                console.log('THE HISTORY',data);
-  });*/
+                this.Myhistory=data.result;
+                console.log(data.result+" keysssssssssss");
+  });
+  }
   setFilteredItems():void{
       this.currenciesTodisplay= this.filterService.filterCurrencies(this.currencies, this.searchTerm);
       this.LoadBalances();
