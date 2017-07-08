@@ -1,6 +1,5 @@
 {
   "name": "CryptoTrader",
   "app_id": "5279266c",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

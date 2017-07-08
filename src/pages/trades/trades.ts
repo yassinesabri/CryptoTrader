@@ -37,6 +37,8 @@ export class TradesPage implements OnInit, OnDestroy {
       this.isApiKey = false;
     }
   }
+
+
   ngOnInit(): void {
     this.searchTerm = "";
     this.LoadCurrencies();
@@ -48,12 +50,23 @@ export class TradesPage implements OnInit, OnDestroy {
   ngOnDestroy() {
 
   }
+
   saveKeys() {
-    this.storage.set('apiKey', this.apiKey);
-    this.storage.set('secretKey', this.secretKey);
-    console.log('done ', this.apiKey, ' ', this.secretKey);
-    this.isApiKey = true;
-    this.LoadBalances();
+    if (this.apiKey.length > 8 && this.secretKey.length > 8) {
+
+      this.storage.set('apiKey', this.apiKey);
+      this.storage.set('secretKey', this.secretKey);
+      console.log('done !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 ', this.apiKey, ' ', this.secretKey);
+      this.isApiKey = true;
+      this.LoadBalances();
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'ERROR !',
+        subTitle: "Please provide a valid API Key and a secret Key ",
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+    }
   }
   doRefresh(refresher) {
     this.LoadBalances();
@@ -62,36 +75,31 @@ export class TradesPage implements OnInit, OnDestroy {
     console.log(this.apiKey);
     console.log(this.secretKey);
   }
-  /*
-  LoadCurrencies() {
-    console.log('LoadBalence111111111 called');
-    console.log('key : '+this.poloniexService.apiKey);
-    this.poloniexService.returnBalances(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
-      console.log('hahiya',data.result);
-      if(typeof this.balance==="undefined"){
-        this.currencies=[];
-      }else{
-        this.currencies=Object.keys(this.balance);
-        this.LoadBalances();
-      }
-    });
 
-}*/
   LoadBalances() {
-    console.log('LoadBalence called');
-    console.log('key : ' + this.poloniexService.apiKey);
-    this.poloniexService.returnBalances(this.poloniexService.apiKey, this.poloniexService.secretKey).subscribe(data => {
-      this.balance = data.result;
-    });
 
+    if (this.isApiKey) {
+      console.log('LoadBalence called');
+      console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey+"<<<< "+this.secretKey);
+      this.poloniexService.returnBalances(this.apiKey, this.secretKey).subscribe(data => {
+        console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey+"<<<< "+this.secretKey);
+        this.balance = data.result;
+        console.log('done successfully balance !!!!!!!!!!!!!!!!!!!!! : ' + this.balance);
+
+
+      });
+    }
   }
   LoadCurrencies() {
-    this.poloniexService.returnCurrencies().subscribe(data => {
-      if (data.success) {
-        this.currencies = Object.keys(data.result);
-        this.currenciesTodisplay = Object.keys(data.result);
-      }
-    });
+
+    if (this.isApiKey) {
+      this.poloniexService.returnCurrencies().subscribe(data => {
+        if (data.success) {
+          this.currencies = Object.keys(data.result);
+          this.currenciesTodisplay = Object.keys(data.result);
+        }
+      });
+    }
   }
   deleteKeys(): void {
     this.apiKey = null;
@@ -106,18 +114,20 @@ export class TradesPage implements OnInit, OnDestroy {
       "balance": coinBalannce
     });
   }
-
-  ShowMyTradeHistory() {
-    this.end = Math.round(new Date().getTime() / 1000);
-    this.start = this.end - 600;
-    this.poloniexService.returnMyTradeHistory(this.poloniexService.apiKey, this.poloniexService.secretKey, "BTC_BCN", this.start, this.end).subscribe(data => {
-      this.Myhistory = data.result;
-      console.log(data.result + " keysssssssssss");
-    });
-  }
   setFilteredItems(): void {
     this.currenciesTodisplay = this.filterService.filterCurrencies(this.currencies, this.searchTerm);
     this.LoadBalances();
   }
 
 }
+/*
+  ShowMyTradeHistory() {
+    if (this.isApiKey) {
+      this.end = Math.round(new Date().getTime() / 1000);
+      this.start = this.end - 600;
+      this.poloniexService.returnMyTradeHistory(this.apiKey, this.secretKey, "BTC_BCN", this.start, this.end).subscribe(data => {
+        this.Myhistory = data.result;
+        console.log(data.result + " keysssssssssss");
+      });
+    }
+  }*/
