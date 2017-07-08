@@ -19,7 +19,7 @@ export class DepositsPage implements OnInit,OnDestroy {
     action: string;
     showDep: boolean;
     showWith: boolean;
-    deposit: Array<string>;
+    deposit: any;
     withdrawAddress: string;
     withdrawAmount: number;
     currencyId:string;
@@ -28,6 +28,8 @@ export class DepositsPage implements OnInit,OnDestroy {
     depositWithdraw:any;
     balanceId:any;
     addressW:string;
+    openOrders:any;
+    currency_pair:string;
     constructor(private navParams: NavParams, public poloniexService: PoloniexService,public storage:Storage, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
         this.currencyId = navParams.get("currencyId");
         this.balanceId = navParams.get("balance");
@@ -108,6 +110,7 @@ export class DepositsPage implements OnInit,OnDestroy {
     }
     ngOnInit(): void {
         this.loadHistory();
+        this.OpenOrders();
     }
     ngOnDestroy(): void {}
     withdraw():void{
@@ -156,5 +159,14 @@ export class DepositsPage implements OnInit,OnDestroy {
                 }
             });
         }
+    }
+    OpenOrders():void{
+        this.currency_pair='BELA_'+this.currencyId;
+        console.log(this.currency_pair);
+        this.poloniexService.returnOpenOrders(this.poloniexService.apiKey, this.poloniexService.secretKey,this.currency_pair).subscribe(data => {
+                this.openOrders=data.result; 
+                console.log("!!!!!!!!!!!!!!!!!!h  objeeeect "+this.openOrders);
+            });
+
     }
 }
