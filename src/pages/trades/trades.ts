@@ -126,7 +126,12 @@ export class TradesPage implements OnInit, OnDestroy {
     });
   }
 
-  ShowMyTradeHistory() {
+
+  setFilteredItems(): void {
+    this.currenciesTodisplay = this.filterService.filterCurrencies(this.currencies, this.searchTerm);
+    this.LoadBalances();
+  }
+    ShowMyTradeHistory() {
     if (this.isApiKey) {
       this.end = Math.round(new Date().getTime() / 1000);
       this.start = this.end - 600;
@@ -135,10 +140,6 @@ export class TradesPage implements OnInit, OnDestroy {
         console.log(data.result + " keysssssssssss");
       });
     }
-  }
-  setFilteredItems(): void {
-    this.currenciesTodisplay = this.filterService.filterCurrencies(this.currencies, this.searchTerm);
-    this.LoadBalances();
   }
 
 }
