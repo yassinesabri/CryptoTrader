@@ -80,9 +80,9 @@ export class TradesPage implements OnInit, OnDestroy {
 
     if (this.isApiKey) {
       console.log('LoadBalence called');
-      console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey+"<<<< "+this.secretKey);
+      console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey + "<<<< " + this.secretKey);
       this.poloniexService.returnBalances(this.apiKey, this.secretKey).subscribe(data => {
-        console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey+"<<<< "+this.secretKey);
+        console.log('key de balance!!!!!!!!!!!!!!!!!!!!! : ' + this.apiKey + "<<<< " + this.secretKey);
         this.balance = data.result;
         console.log('done successfully balance !!!!!!!!!!!!!!!!!!!!! : ' + this.balance);
 
@@ -119,8 +119,7 @@ export class TradesPage implements OnInit, OnDestroy {
     this.LoadBalances();
   }
 
-}
-/*
+
   ShowMyTradeHistory() {
     if (this.isApiKey) {
       this.end = Math.round(new Date().getTime() / 1000);
@@ -130,4 +129,5 @@ export class TradesPage implements OnInit, OnDestroy {
         console.log(data.result + " keysssssssssss");
       });
     }
-  }*/
+  }
+}
